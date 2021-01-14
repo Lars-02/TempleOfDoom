@@ -16,4 +16,10 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="CODE_TempleOfDoom_DownloadableContent, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\Clones\deelopdracht-1-the-temple-of-doom-maikdekruif_larsmeeuwsen\DLC\CODE_TempleOfDoom_DownloadableContent.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
