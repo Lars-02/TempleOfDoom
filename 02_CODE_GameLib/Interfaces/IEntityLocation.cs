@@ -1,6 +1,6 @@
 namespace CODE_GameLib.Interfaces
 {
-    public interface IPlayerLocation : IBaseObservable<IPlayerLocation>
+    public interface IEntityLocation : IBaseObservable<IEntityLocation>
     {
         public IRoom Room { get; }
         public int X { get; }

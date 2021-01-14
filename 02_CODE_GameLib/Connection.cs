@@ -1,4 +1,5 @@
-﻿using CODE_GameLib.Interfaces;
+﻿using CODE_GameLib.Enums;
+using CODE_GameLib.Interfaces;
 using CODE_GameLib.Interfaces.Doors;
 
 namespace CODE_GameLib

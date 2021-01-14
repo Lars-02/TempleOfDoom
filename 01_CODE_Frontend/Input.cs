@@ -1,5 +1,6 @@
 ﻿using System;
 using CODE_GameLib;
+using CODE_GameLib.Enums;
 
 namespace CODE_Frontend
 {
@@ -15,25 +16,25 @@ namespace CODE_Frontend
                 case ConsoleKey.K:
                 case ConsoleKey.W:
                 case ConsoleKey.UpArrow:
-                    tickData.MovePlayer = Direction.Top;
+                    tickData.MovePlayer = Direction.North;
                     break;
 
                 case ConsoleKey.J:
                 case ConsoleKey.S:
                 case ConsoleKey.DownArrow:
-                    tickData.MovePlayer = Direction.Bottom;
+                    tickData.MovePlayer = Direction.South;
                     break;
 
                 case ConsoleKey.H:
                 case ConsoleKey.A:
                 case ConsoleKey.LeftArrow:
-                    tickData.MovePlayer = Direction.Left;
+                    tickData.MovePlayer = Direction.West;
                     break;
 
                 case ConsoleKey.L:
                 case ConsoleKey.D:
                 case ConsoleKey.RightArrow:
-                    tickData.MovePlayer = Direction.Right;
+                    tickData.MovePlayer = Direction.East;
                     break;
 
                 case ConsoleKey.Escape:

@@ -1,5 +1,7 @@
 ﻿using CODE_GameLib.Interfaces;
 using System;
+using CODE_GameLib.Enums;
+using CODE_GameLib.Observers;
 
 namespace CODE_GameLib
 {

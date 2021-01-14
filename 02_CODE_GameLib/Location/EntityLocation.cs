@@ -1,8 +1,9 @@
 using CODE_GameLib.Interfaces;
+using CODE_GameLib.Observers;
 
-namespace CODE_GameLib
+namespace CODE_GameLib.Location
 {
-    public class PlayerLocation : BaseObservable<IPlayerLocation>, IPlayerLocation
+    public class EntityLocation : BaseObservable<IEntityLocation>, IEntityLocation
     {
         public IRoom Room { get; private set; }
 
@@ -10,7 +11,7 @@ namespace CODE_GameLib
 
         public int Y { get; private set; }
 
-        public PlayerLocation(IRoom room, int x, int y)
+        public EntityLocation(IRoom room, int x, int y)
         {
             Room = room;
             X = x;

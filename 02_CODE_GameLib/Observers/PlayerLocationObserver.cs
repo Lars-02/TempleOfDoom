@@ -1,21 +1,21 @@
+using System;
+using System.Linq;
 using CODE_GameLib.Interfaces;
 using CODE_GameLib.Interfaces.Doors;
 using CODE_GameLib.Interfaces.Items;
 using CODE_GameLib.Interfaces.Items.BoobyTraps;
 using CODE_GameLib.Interfaces.Items.Wearable;
-using System;
-using System.Linq;
 
-namespace CODE_GameLib
+namespace CODE_GameLib.Observers
 {
-    public class PlayerLocationObserver : IObserver<IPlayerLocation>
+    public class PlayerLocationObserver : IObserver<IEntityLocation>
     {
         private readonly IGame _game;
 
-        public PlayerLocationObserver(IGame game, IPlayerLocation playerLocation)
+        public PlayerLocationObserver(IGame game, IEntityLocation entityLocation)
         {
             _game = game;
-            playerLocation.Subscribe(this);
+            entityLocation.Subscribe(this);
         }
 
         public void OnCompleted()
@@ -28,10 +28,10 @@ namespace CODE_GameLib
             throw new NotImplementedException();
         }
 
-        public void OnNext(IPlayerLocation playerLocation)
+        public void OnNext(IEntityLocation entityLocation)
         {
-            var roomItem = playerLocation.Room.Items.FirstOrDefault(item =>
-                item.X == playerLocation.X && item.Y == playerLocation.Y);
+            var roomItem = entityLocation.Room.Items.FirstOrDefault(item =>
+                item.X == entityLocation.X && item.Y == entityLocation.Y);
             switch (roomItem)
             {
                 case IWearable wearable:
@@ -41,13 +41,13 @@ namespace CODE_GameLib
                     _game.Player.ReceiveDamage(boobyTrap.Damage);
                     break;
                 case IPressurePlate _:
-                    foreach (var connection in playerLocation.Room.Connections.Where(conn => conn.Door is IToggleDoor))
+                    foreach (var connection in entityLocation.Room.Connections.Where(conn => conn.Door is IToggleDoor))
                         connection.Door.Opened = !connection.Door.Opened;
                     break;
             }
 
             if (roomItem is IWearable || roomItem is IDisappearingTrap)
-                playerLocation.Room.Items.Remove(roomItem);
+                entityLocation.Room.Items.Remove(roomItem);
 
             _game.Update();
         }

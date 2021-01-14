@@ -2,6 +2,7 @@
 using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using System.Linq;
+using CODE_GameLib.Enums;
 using CODE_GameLib.Interfaces.Doors;
 
 namespace CODE_GameLib.Factories
@@ -12,10 +13,10 @@ namespace CODE_GameLib.Factories
         {
             var convertLocation = new Dictionary<string, Direction>
             {
-                {"NORTH", Direction.Top},
-                {"EAST", Direction.Right},
-                {"SOUTH", Direction.Bottom},
-                {"WEST", Direction.Left}
+                {"NORTH", Direction.North},
+                {"EAST", Direction.East},
+                {"SOUTH", Direction.South},
+                {"WEST", Direction.West}
             };
 
             var actualConnections = jConnection.Properties()

@@ -1,7 +1,7 @@
-﻿using CODE_GameLib.Interfaces;
-using System.Collections.Generic;
+﻿using CODE_GameLib;
+using CODE_GameLib.Interfaces;
 
-namespace CODE_GameLib.Factories
+namespace CODE_PersistenceLib.Factories
 {
     public static class GameFactory
     {

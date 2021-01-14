@@ -9,7 +9,7 @@ namespace CODE_Frontend
         {
             while (true)
             {
-                var game = GameReader.Read(@"./Levels/TempleOfDoom.json");
+                var game = GameReader.Read(@"./Levels/TempleOfDoom_Extended_A.json");
 
                 var gameView = new GameView();
                 game.Updated += (uSender, uGame) => gameView.Update(uGame);

@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace CODE_GameLib
+namespace CODE_GameLib.Observers
 {
     public abstract class BaseObservable<T>
     {

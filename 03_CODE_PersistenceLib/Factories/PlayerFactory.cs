@@ -7,12 +7,12 @@ namespace CODE_GameLib.Factories
 {
     public static class PlayerFactory
     {
-        public static IPlayer CreatePlayer(JToken playerJToken, IPlayerLocation playerLocation)
+        public static IPlayer CreatePlayer(JToken playerJToken, IEntityLocation entityLocation)
         {
             return new Player(
                 playerJToken["lives"].Value<int>(),
                 new List<IWearable>(),
-                playerLocation
+                entityLocation
             );
         }
     }

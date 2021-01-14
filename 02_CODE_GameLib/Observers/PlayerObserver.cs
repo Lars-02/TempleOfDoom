@@ -1,7 +1,7 @@
-using CODE_GameLib.Interfaces;
 using System;
+using CODE_GameLib.Interfaces;
 
-namespace CODE_GameLib
+namespace CODE_GameLib.Observers
 {
     public class PlayerObserver : IObserver<IPlayer>
     {

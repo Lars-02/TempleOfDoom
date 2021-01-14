@@ -1,11 +1,12 @@
 using CODE_GameLib.Interfaces.Items.Wearable;
 using System.Collections.Generic;
+using CODE_GameLib.Enums;
 
 namespace CODE_GameLib.Interfaces
 {
     public interface IPlayer : IBaseObservable<IPlayer>
     {
-        public IPlayerLocation Location { get; }
+        public IEntityLocation Location { get; }
 
         public int Lives { get; }
 

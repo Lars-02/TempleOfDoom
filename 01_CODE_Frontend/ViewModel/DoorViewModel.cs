@@ -1,4 +1,5 @@
 ﻿using CODE_GameLib;
+using CODE_GameLib.Enums;
 using CODE_GameLib.Interfaces.Doors;
 
 namespace CODE_Frontend.ViewModel
@@ -28,7 +29,7 @@ namespace CODE_Frontend.ViewModel
                 {
                     var consoleText = new ConsoleText("|", Util.ColorToConsoleColor(coloredDoor.Color));
                     
-                    if (direction == Direction.Top || direction == Direction.Bottom)
+                    if (direction == Direction.North || direction == Direction.South)
                         consoleText.Text = "−";
 
                     return consoleText;
