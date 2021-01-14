@@ -7,7 +7,7 @@ namespace CODE_PersistenceLib.Factories
 {
     public static class EntityLocationFactory
     {
-        public static IEntityLocation CreatePlayerLocation(IReadOnlyDictionary<int, IRoom> rooms, JToken playerJToken)
+        public static IEntityLocation CreateEntityLocation(IReadOnlyDictionary<int, IRoom> rooms, JToken playerJToken)
         {
             return new EntityLocation(
                 rooms[playerJToken["startRoomId"].Value<int>()],
