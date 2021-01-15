@@ -1,4 +1,4 @@
-namespace CODE_GameLib.Interfaces.Items
+namespace CODE_GameLib.Interfaces
 {
     public interface ILocation
     {
