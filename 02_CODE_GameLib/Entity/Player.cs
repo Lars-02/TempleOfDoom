@@ -16,7 +16,7 @@ namespace CODE_GameLib.Entity
 
         public List<IWearable> Inventory { get; } = new List<IWearable>();
 
-        public Player(int lives, IEntityLocation location) : base(lives, location)
+        public Player(int lives, ILocation location) : base(lives, location)
         {
         }
 

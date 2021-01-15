@@ -4,7 +4,7 @@ namespace CODE_GameLib.Interfaces.Entity
 {
     public interface IEntity : IBaseObservable<IEntity>
     {
-        public IEntityLocation Location { get; }
+        public ILocation Location { get; }
 
         public int Lives { get; }
         

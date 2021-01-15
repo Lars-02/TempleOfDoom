@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
+using CODE_GameLib;
 using CODE_GameLib.Interfaces;
 using CODE_GameLib.Interfaces.Items;
 using CODE_GameLib.Items;
-using CODE_GameLib.Location;
 using Newtonsoft.Json.Linq;
 
 namespace CODE_PersistenceLib.Factories
@@ -18,8 +18,8 @@ namespace CODE_PersistenceLib.Factories
             roomId1 = portalList[0]["roomId"].Value<int>();
             roomId2 = portalList[1]["roomId"].Value<int>();
 
-            var destination1 = new Location(portalList[1]["x"].Value<int>(), portalList[1]["y"].Value<int>(), rooms[portalList[1]["roomId"].Value<int>()]);
-            var destination2 = new Location(portalList[0]["x"].Value<int>(), portalList[0]["y"].Value<int>(), rooms[portalList[0]["roomId"].Value<int>()]);
+            var destination1 = new Location(rooms[portalList[1]["roomId"].Value<int>()], portalList[1]["x"].Value<int>(), portalList[1]["y"].Value<int>() );
+            var destination2 = new Location(rooms[portalList[0]["roomId"].Value<int>()], portalList[0]["x"].Value<int>(), portalList[0]["y"].Value<int>());
             
             portal1 = new Portal(portalList[0]["x"].Value<int>(), portalList[0]["y"].Value<int>(), destination1);
             portal2 = new Portal(portalList[1]["x"].Value<int>(), portalList[1]["y"].Value<int>(), destination2);

@@ -7,11 +7,11 @@ namespace CODE_PersistenceLib.Factories
 {
     public static class PlayerFactory
     {
-        public static IPlayer CreatePlayer(JToken playerJToken, IEntityLocation entityLocation)
+        public static IPlayer CreatePlayer(JToken playerJToken, ILocation location)
         {
             return new Player(
                 playerJToken["lives"].Value<int>(),
-                entityLocation
+                location
             );
         }
     }

@@ -8,14 +8,14 @@ using CODE_GameLib.Interfaces.Items.Wearable;
 
 namespace CODE_GameLib.Observers
 {
-    public class PlayerLocationObserver : IObserver<IEntityLocation>
+    public class PlayerLocationObserver : IObserver<ILocation>
     {
         private readonly IGame _game;
 
-        public PlayerLocationObserver(IGame game, IEntityLocation entityLocation)
+        public PlayerLocationObserver(IGame game, ILocation location)
         {
             _game = game;
-            entityLocation.Subscribe(this);
+            location.Subscribe(this);
         }
 
         public void OnCompleted()
@@ -28,10 +28,10 @@ namespace CODE_GameLib.Observers
             throw new NotImplementedException();
         }
 
-        public void OnNext(IEntityLocation entityLocation)
+        public void OnNext(ILocation location)
         {
-            var roomItem = entityLocation.Room.Items.FirstOrDefault(item =>
-                item.X == entityLocation.X && item.Y == entityLocation.Y);
+            var roomItem = location.Room.Items.FirstOrDefault(item =>
+                item.X == location.X && item.Y == location.Y);
             switch (roomItem)
             {
                 case IWearable wearable:
@@ -41,13 +41,13 @@ namespace CODE_GameLib.Observers
                     _game.Player.ReceiveDamage(boobyTrap.Damage);
                     break;
                 case IPressurePlate _:
-                    foreach (var connection in entityLocation.Room.Connections.Where(conn => conn.Door is IToggleDoor))
+                    foreach (var connection in location.Room.Connections.Where(conn => conn.Door is IToggleDoor))
                         connection.Door.Opened = !connection.Door.Opened;
                     break;
             }
 
             if (roomItem is IWearable || roomItem is IDisappearingTrap)
-                entityLocation.Room.Items.Remove(roomItem);
+                location.Room.Items.Remove(roomItem);
 
             _game.Update();
         }

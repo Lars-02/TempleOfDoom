@@ -1,9 +1,11 @@
 namespace CODE_GameLib.Interfaces
 {
-    public interface ILocation
+    public interface ILocation : IBaseObservable<ILocation>
     {
-        IRoom Room { get; }
+        public IRoom Room { get; }
         public int X { get; }
         public int Y { get; }
+
+        public bool SetLocation(ILocation location);
     }
 }
