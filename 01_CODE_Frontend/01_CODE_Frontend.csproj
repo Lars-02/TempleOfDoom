@@ -15,6 +15,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
+  
+  <ItemGroup>
+    <None Update="Levels\TempleOfDoom_Extended_B.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 
   <ItemGroup>
     <Reference Include="CODE_TempleOfDoom_DownloadableContent, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
