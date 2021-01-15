@@ -27,7 +27,7 @@ namespace CODE_Frontend
                 Console.WriteLine("Please hit any key to restart or escape to quit...");
                 var closeKey = Console.ReadKey().Key;
                 if (closeKey != ConsoleKey.Escape) continue;
-                Console.WriteLine("QQuitting game, goodbye!");
+                Console.WriteLine("Quitting game, goodbye!");
                 break;
             }
         }

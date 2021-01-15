@@ -1,11 +1,9 @@
-﻿using CODE_GameLib.Interfaces;
-using CODE_GameLib.Interfaces.Items.Wearable;
-using Newtonsoft.Json.Linq;
-using System.Collections.Generic;
-using CODE_GameLib.Entity;
+﻿using CODE_GameLib.Entity;
+using CODE_GameLib.Interfaces;
 using CODE_GameLib.Interfaces.Entity;
+using Newtonsoft.Json.Linq;
 
-namespace CODE_GameLib.Factories
+namespace CODE_PersistenceLib.Factories
 {
     public static class PlayerFactory
     {
@@ -13,7 +11,6 @@ namespace CODE_GameLib.Factories
         {
             return new Player(
                 playerJToken["lives"].Value<int>(),
-                new List<IWearable>(),
                 entityLocation
             );
         }

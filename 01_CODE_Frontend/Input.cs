@@ -10,31 +10,42 @@ namespace CODE_Frontend
         {
             var tickData = new TickData();
 
-            // ReSharper disable once SwitchStatementMissingSomeEnumCasesNoDefault
             switch (key)
             {
-                case ConsoleKey.K:
-                case ConsoleKey.W:
                 case ConsoleKey.UpArrow:
                     tickData.MovePlayer = Direction.North;
                     break;
 
-                case ConsoleKey.J:
-                case ConsoleKey.S:
                 case ConsoleKey.DownArrow:
                     tickData.MovePlayer = Direction.South;
                     break;
 
-                case ConsoleKey.H:
-                case ConsoleKey.A:
                 case ConsoleKey.LeftArrow:
                     tickData.MovePlayer = Direction.West;
                     break;
 
-                case ConsoleKey.L:
-                case ConsoleKey.D:
                 case ConsoleKey.RightArrow:
                     tickData.MovePlayer = Direction.East;
+                    break;
+
+                case ConsoleKey.S:
+                    tickData.ToggleCheat = Cheat.OneMoreStone;
+                    break;
+
+                case ConsoleKey.T:
+                    tickData.ToggleCheat = Cheat.DoorPortal;
+                    break;
+
+                case ConsoleKey.L:
+                    tickData.ToggleCheat = Cheat.Invincible;
+                    break;
+
+                case ConsoleKey.D:
+                    tickData.ToggleCheat = Cheat.IgnoreDoors;
+                    break;
+
+                case ConsoleKey.Spacebar:
+                    tickData.Shoot = true;
                     break;
 
                 case ConsoleKey.Escape:

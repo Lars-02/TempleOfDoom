@@ -8,7 +8,7 @@ namespace CODE_GameLib.Doors
     {
         public bool Opened { get; set; }
 
-        public bool PassThru(IPlayer player)
+        public bool CanPassThru(IEntity entity)
         {
             return Opened;
         }

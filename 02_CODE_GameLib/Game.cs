@@ -26,10 +26,20 @@ namespace CODE_GameLib
         public void Tick(TickData tickData)
         {
             if (tickData.Quit)
+            {
                 Destroy();
+                return;
+            }
 
             if (tickData.MovePlayer != null)
-                Player.Move((Direction)tickData.MovePlayer);
+                Player.Move((Direction) tickData.MovePlayer);
+            
+            if (Player.Cheats.Contains(tickData.ToggleCheat))
+                Player.Cheats.Remove(tickData.ToggleCheat);
+            else
+                Player.Cheats.Add(tickData.ToggleCheat);
+
+            Update();
         }
 
         public void Destroy()

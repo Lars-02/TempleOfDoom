@@ -13,7 +13,7 @@ namespace CODE_GameLib.Doors
             Opened = true;
         }
 
-        public bool PassThru(IPlayer player)
+        public bool CanPassThru(IEntity entity)
         {
             if (!Opened) return false;
 

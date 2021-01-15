@@ -6,6 +6,6 @@ namespace CODE_GameLib.Interfaces.Doors
     {
         public bool Opened { get; set; }
 
-        public bool PassThru(IPlayer player);
+        public bool CanPassThru(IEntity entity);
     }
 }

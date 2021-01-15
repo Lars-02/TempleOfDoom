@@ -17,8 +17,10 @@ namespace CODE_GameLib.Doors
             Color = color;
         }
 
-        public bool PassThru(IPlayer player)
+        public bool CanPassThru(IEntity entity)
         {
+            if (!(entity is IPlayer player))
+                return false;
             if (player.Inventory.Where(item => item is IKey).Any(key => ((IKey)key).Color == Color))
                 Opened = true;
             return Opened;
