@@ -12,16 +12,18 @@ namespace CODE_GameLib
 
         public bool Quit { get; private set; }
         public bool Won { get; private set; }
-
         public IPlayer Player { get; }
+        public ILocation StartLocation { get; }
 
         public Game(IPlayer player)
         {
             Player = player;
+            
+            StartLocation = player.Location;
 
             Player.Subscribe(new PlayerObserver(this));
             // ReSharper disable once ObjectCreationAsStatement
-            new PlayerLocationObserver(this, player.Location);
+            new EntityLocationObserver(this, player.Location);
         }
 
         public void Tick(TickData tickData)

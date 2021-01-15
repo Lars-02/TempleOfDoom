@@ -1,6 +1,5 @@
 using System;
 using System.Linq;
-using CODE_GameLib.Enums;
 using CODE_GameLib.Interfaces;
 using CODE_GameLib.Interfaces.Doors;
 using CODE_GameLib.Interfaces.Items;
@@ -9,11 +8,11 @@ using CODE_GameLib.Interfaces.Items.Wearable;
 
 namespace CODE_GameLib.Observers
 {
-    public class PlayerLocationObserver : IObserver<ILocation>
+    public class EntityLocationObserver : IObserver<ILocation>
     {
         private readonly IGame _game;
 
-        public PlayerLocationObserver(IGame game, ILocation location)
+        public EntityLocationObserver(IGame game, ILocation location)
         {
             _game = game;
             location.Subscribe(this);
@@ -29,6 +28,8 @@ namespace CODE_GameLib.Observers
             throw new NotImplementedException();
         }
 
+        //TODO make so this is for entity
+        //TODO move to other locations like room
         public void OnNext(ILocation location)
         {
             var roomItem = location.Room.Items.FirstOrDefault(item =>
@@ -40,6 +41,9 @@ namespace CODE_GameLib.Observers
                     break;
                 case IBoobyTrap boobyTrap:
                     _game.Player.ReceiveDamage(boobyTrap.Damage);
+                    break;
+                case IPortal portal:
+                    portal.UsePortal(_game.Player);
                     break;
                 case IPressurePlate _:
                     foreach (var connection in location.Room.Connections.Where(conn => conn.Door is IToggleDoor))

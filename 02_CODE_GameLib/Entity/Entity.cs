@@ -9,23 +9,29 @@ namespace CODE_GameLib.Entity
     public class Entity : BaseObservable<IEntity>, IEntity
     {
         public ILocation Location { get; }
-        
         public int Lives { get; private set; }
-
         public bool Died => Lives < 1;
+        private bool Teleported { get; set; }
 
         protected Entity(int lives, ILocation location)
         {
             Location = location;
             Lives = lives;
         }
+        
+        protected Entity(int lives, ILocation location, ILocation movedFromLast)
+        {
+            Lives = lives;
+            Location = location;
+        }
 
         public bool Move(Direction direction)
         {
+
             var (x, y) = DirectionToPosition(direction);
             
             var destination = Location.Room.GetDestination(x, y, direction, this);
-            
+
             return destination != null && Location.SetLocation(destination);
         }
         
@@ -54,6 +60,13 @@ namespace CODE_GameLib.Entity
             }
 
             return (targetX, targetY);
+        }
+
+        public bool Teleport(ILocation teleportTo)
+        {
+            if (Teleported) return false;
+            Teleported = true;
+            return Location.SetLocation(teleportTo);
         }
 
         public bool ReceiveDamage(int damage)

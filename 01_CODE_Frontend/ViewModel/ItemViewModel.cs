@@ -27,6 +27,7 @@ namespace CODE_Frontend.ViewModel
                 IBoobyTrap _ => new ConsoleText("Ο", ConsoleColor.White),
                 IKey key => new ConsoleText("K", Util.ColorToConsoleColor(key.Color)),
                 IPressurePlate _ => new ConsoleText("T", ConsoleColor.White),
+                IPortal _ => new ConsoleText("Π", ConsoleColor.Magenta),
                 _ => new ConsoleText("?")
             };
         }
