@@ -9,6 +9,7 @@ namespace CODE_Frontend
         {
             while (true)
             { 
+                // TODO this is the old game file...
                 //var game = GameReader.Read(@"./Levels/TempleOfDoom.json");
                 var game = GameReader.Read(@"./Levels/TempleOfDoom_Extended_B.json");
 

@@ -34,10 +34,9 @@ namespace CODE_GameLib
             if (tickData.MovePlayer != null)
                 Player.Move((Direction) tickData.MovePlayer);
             
-            if (Player.Cheats.Contains(tickData.ToggleCheat))
-                Player.Cheats.Remove(tickData.ToggleCheat);
-            else
-                Player.Cheats.Add(tickData.ToggleCheat);
+            if (tickData.ToggleCheat != null && Player.Cheats.Contains(tickData.ToggleCheat.Value))
+                Player.Cheats.Remove(tickData.ToggleCheat.Value);
+            else if (tickData.ToggleCheat != null) Player.Cheats.Add(tickData.ToggleCheat.Value);
 
             Update();
         }

@@ -27,10 +27,10 @@ namespace CODE_Frontend.Modules
         public IEnumerable<ConsoleText> Render(IGame game)
         {
             _player = game.Player;
-            
+
             yield return new ConsoleText(Title);
             yield return new ConsoleText(Environment.NewLine);
-            
+
             yield return new ConsoleText(Lives);
             yield return new ConsoleText(" - ");
             yield return new ConsoleText(SankaraStones, ConsoleColor.DarkYellow);
@@ -39,11 +39,12 @@ namespace CODE_Frontend.Modules
             yield return new ConsoleText(Environment.NewLine);
 
             foreach (var item in GetInventory())
-            {
                 yield return item;
-                yield return new ConsoleText(" ");
-            }
-            
+
+            foreach (var cheat in GetCheats())
+                yield return cheat;
+
+
             yield return new ConsoleText(Environment.NewLine);
             yield return new ConsoleText(GenericModule.HorizontalLine(Console.WindowWidth), ConsoleColor.Gray);
             yield return new ConsoleText(Environment.NewLine);
@@ -51,10 +52,29 @@ namespace CODE_Frontend.Modules
 
         private IEnumerable<ConsoleText> GetInventory()
         {
-            yield return new ConsoleText("Inventory: ");
+            if (!_player.Inventory.Any(wearable => wearable is IKey))
+                yield break;
+
+            yield return new ConsoleText("Inventory:");
 
             foreach (var item in _player.Inventory.Where(item => !(item is ISankaraStone)))
+            {
+                yield return new ConsoleText(" ");
                 yield return new ItemViewModel(item).View;
+            }
+            
+            yield return new ConsoleText(Environment.NewLine);
+        }
+
+        private IEnumerable<ConsoleText> GetCheats()
+        {
+            if (!_player.Cheats.Any())
+                yield break;
+
+            yield return new ConsoleText("Cheats:", ConsoleColor.DarkRed);
+
+            foreach (var cheat in _player.Cheats.OrderBy(cheat => cheat.ToString()))
+                yield return new ConsoleText($" {cheat.ToString()}");
         }
     }
 }

@@ -26,7 +26,7 @@ namespace CODE_GameLib.Observers
 
         public void OnNext(IEntity entity)
         {
-            if (entity.Died || (entity is IPlayer player && player.Won))
+            if (entity.Died || entity is IPlayer player && player.Won)
                 _game.Destroy();
         }
     }

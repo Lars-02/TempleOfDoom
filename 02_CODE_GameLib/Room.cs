@@ -27,7 +27,7 @@ namespace CODE_GameLib
             if (!IsWall(targetX, targetY))
                 return new Location(this, targetX, targetY);
 
-            if (IsCenterOfWall(targetX, targetY))
+            if (!IsCenterOfWall(targetX, targetY))
                 return null;
 
             var destination = GetConnectionDestination(direction, entity);
@@ -38,10 +38,18 @@ namespace CODE_GameLib
 
         private IConnection GetConnectionDestination(Direction direction, IEntity entity)
         {
-            return Connections.First(conn => conn.Direction == direction && conn.Door.CanPassThru(entity)).Destination;
+            if (Connections.All(conn => conn.Direction != direction))
+                return null;
+                    
+            var connection = Connections.FirstOrDefault(conn => conn.Direction == direction);
+            
+            if (connection?.Door != null && !connection.Door.CanPassThru(entity))
+                return null;
+
+            return connection?.Destination;
         }
 
-        private (int, int) GetDestinationXy(IConnection destination)
+        private static (int, int) GetDestinationXy(IConnection destination)
         {
             if (destination.Direction == Direction.North || destination.Direction == Direction.South)
                 return ((destination.Room.Width + 1) / 2 - 1,
@@ -52,7 +60,7 @@ namespace CODE_GameLib
 
         private bool IsWall(int x, int y)
         {
-            return x >= 1 && y >= 1 && x <= Width - 2 && y <= Height - 2;
+            return x < 1 || y < 1 || x > Width - 2 || y > Height - 2;
         }
 
         private bool IsCenterOfWall(int x, int y)

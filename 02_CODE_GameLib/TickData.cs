@@ -6,7 +6,7 @@ namespace CODE_GameLib
     {
         public Direction? MovePlayer { get; set; }
         
-        public Cheat ToggleCheat { get; set; }
+        public Cheat? ToggleCheat { get; set; }
         public bool Quit { get; set; }
         
         public bool Shoot { get; set; }
