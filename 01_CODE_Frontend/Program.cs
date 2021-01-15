@@ -8,8 +8,9 @@ namespace CODE_Frontend
         private static void Main()
         {
             while (true)
-            {
-                var game = GameReader.Read(@"./Levels/TempleOfDoom_Extended_A.json");
+            { 
+                //var game = GameReader.Read(@"./Levels/TempleOfDoom.json");
+                var game = GameReader.Read(@"./Levels/TempleOfDoom_Extended_B.json");
 
                 var gameView = new GameView();
                 game.Updated += (uSender, uGame) => gameView.Update(uGame);
