@@ -11,6 +11,7 @@ namespace CODE_GameLib
         public event EventHandler<Game> Updated;
 
         public bool Quit { get; private set; }
+        public bool Won { get; private set; }
 
         public IPlayer Player { get; }
 
@@ -27,7 +28,7 @@ namespace CODE_GameLib
         {
             if (tickData.Quit)
             {
-                Destroy();
+                Destroy(false);
                 return;
             }
 
@@ -41,11 +42,14 @@ namespace CODE_GameLib
             Update();
         }
 
-        public void Destroy()
+        public void Destroy(bool winGame)
         {
             Quit = true;
+            Won = winGame;
             Update();
         }
+        
+       
 
         public void Update()
         {

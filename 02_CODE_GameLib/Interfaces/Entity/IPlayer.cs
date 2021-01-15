@@ -7,13 +7,7 @@ namespace CODE_GameLib.Interfaces.Entity
     public interface IPlayer : IEntity
     {
         public List<IWearable> Inventory { get; }
-
         public List<Cheat> Cheats { get; }
-        
-        public bool Won { get; }
-        
         public bool AddToInventory(IWearable wearable);
-
-        
     }
 }
