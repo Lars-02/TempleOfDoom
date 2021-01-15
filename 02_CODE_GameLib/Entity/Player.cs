@@ -1,14 +1,14 @@
-using CODE_GameLib.Interfaces;
-using CODE_GameLib.Interfaces.Items.Wearable;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using CODE_GameLib.Enums;
-using CODE_GameLib.Observers;
+using CODE_GameLib.Interfaces;
+using CODE_GameLib.Interfaces.Entity;
+using CODE_GameLib.Interfaces.Items.Wearable;
 
-namespace CODE_GameLib
+namespace CODE_GameLib.Entity
 {
-    public class Player : BaseObservable<IPlayer>, IPlayer
+    public class Player : Entity, IPlayer
     {
         private readonly List<IWearable> _inventory;
         public IEntityLocation Location { get; }

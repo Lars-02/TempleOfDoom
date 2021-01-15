@@ -1,4 +1,5 @@
 ﻿using CODE_GameLib.Interfaces;
+using CODE_GameLib.Interfaces.Entity;
 
 namespace CODE_Frontend.ViewModel
 {

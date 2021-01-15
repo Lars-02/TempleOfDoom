@@ -1,17 +1,17 @@
 using System;
 using CODE_GameLib.Interfaces;
+using CODE_GameLib.Interfaces.Entity;
 
 namespace CODE_GameLib.Observers
 {
-    public class PlayerObserver : IObserver<IPlayer>
+    public class PlayerObserver : IObserver<IPlayer>, IObserver<IEntity>
     {
 
         private readonly IGame _game;
 
-        public PlayerObserver(IGame game, IPlayer player)
+        public PlayerObserver(IGame game)
         {
             _game = game;
-            player.Subscribe(this);
         }
 
         public void OnCompleted()
@@ -24,10 +24,15 @@ namespace CODE_GameLib.Observers
             throw new NotImplementedException();
         }
 
+        public void OnNext(IEntity entity)
+        {
+            if (entity.Died || (entity is IPlayer player && player.Won))
+                _game.Destroy();
+        }
+
         public void OnNext(IPlayer player)
         {
-            if (player.Died || player.Won)
-                _game.Destroy();
+            
         }
     }
 }

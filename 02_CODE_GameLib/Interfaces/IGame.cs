@@ -1,4 +1,5 @@
 using System;
+using CODE_GameLib.Interfaces.Entity;
 
 namespace CODE_GameLib.Interfaces
 {

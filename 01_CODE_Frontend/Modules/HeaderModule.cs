@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using CODE_Frontend.ViewModel;
+using CODE_GameLib.Interfaces.Entity;
 using CODE_GameLib.Interfaces.Items.Wearable;
 
 namespace CODE_Frontend.Modules

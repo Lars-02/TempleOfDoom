@@ -3,6 +3,7 @@ using CODE_GameLib.Interfaces.Items.Wearable;
 using System.Drawing;
 using System.Linq;
 using CODE_GameLib.Interfaces.Doors;
+using CODE_GameLib.Interfaces.Entity;
 
 namespace CODE_GameLib.Doors
 {

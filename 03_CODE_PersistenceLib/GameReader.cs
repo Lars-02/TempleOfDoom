@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using CODE_GameLib.Interfaces.Entity;
 using CODE_PersistenceLib.Factories;
 
 namespace CODE_PersistenceLib
