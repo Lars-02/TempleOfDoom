@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using CODE_GameLib.Enums;
 using CODE_GameLib.Interfaces;
+using CODE_GameLib.Interfaces.Doors;
 using CODE_GameLib.Interfaces.Entity;
 using CODE_GameLib.Interfaces.Items;
 
@@ -47,10 +48,13 @@ namespace CODE_GameLib
 
             var connection = Connections.FirstOrDefault(conn => conn.Direction == direction);
 
-            if (connection?.Door != null && !connection.Door.CanPassThru(entity))
-                return null;
+            if (connection?.Door == null || connection.Door.CanPassThru(entity)) return connection?.Destination;
+            
+            if (connection.Door is IClosingDoor && entity is IPlayer player &&
+                player.Cheats.Contains(Cheat.DoorPortal))
+                player.Teleport(player.StartLocation);
+            return null;
 
-            return connection?.Destination;
         }
 
         private static (int, int) GetDestinationXy(IConnection destination)

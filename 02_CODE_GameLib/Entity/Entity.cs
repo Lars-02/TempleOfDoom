@@ -36,7 +36,6 @@ namespace CODE_GameLib.Entity
             
             Teleported = false;
             return true;
-
         }
         
         private (int, int) DirectionToPosition(Direction direction)

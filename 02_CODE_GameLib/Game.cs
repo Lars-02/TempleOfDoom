@@ -13,12 +13,10 @@ namespace CODE_GameLib
         public bool Quit { get; private set; }
         public bool Won { get; private set; }
         public IPlayer Player { get; }
-        public ILocation StartLocation { get; }
 
         public Game(IPlayer player)
         {
             Player = player;
-            StartLocation = player.Location;
 
             Player.Subscribe(new PlayerObserver(this));
             Player.Location.Subscribe(new EntityLocationObserver(this, Player));

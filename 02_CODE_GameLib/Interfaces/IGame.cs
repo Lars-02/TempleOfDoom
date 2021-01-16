@@ -10,7 +10,6 @@ namespace CODE_GameLib.Interfaces
         public bool Quit { get; }
         public bool Won { get; }
         public IPlayer Player { get; }
-        public ILocation StartLocation { get; }
         public void Tick(TickData tickData);
         public void Destroy(bool winGame);
     }
