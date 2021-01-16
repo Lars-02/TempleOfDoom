@@ -18,12 +18,10 @@ namespace CODE_GameLib
         public Game(IPlayer player)
         {
             Player = player;
-            
             StartLocation = player.Location;
 
             Player.Subscribe(new PlayerObserver(this));
-            // ReSharper disable once ObjectCreationAsStatement
-            new EntityLocationObserver(this, player.Location);
+            Player.Location.Subscribe(new EntityLocationObserver(this, Player));
         }
 
         public void Tick(TickData tickData)

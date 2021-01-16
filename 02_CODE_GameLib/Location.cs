@@ -1,4 +1,6 @@
+using System.Linq;
 using CODE_GameLib.Interfaces;
+using CODE_GameLib.Interfaces.Items;
 using CODE_GameLib.Observers;
 
 namespace CODE_GameLib
@@ -28,5 +30,7 @@ namespace CODE_GameLib
             NotifyObservers(this);
             return true;
         }
+        
+        public IItem GetItem() => Room.Items.FirstOrDefault(item => item.X == X && item.Y == Y);
     }
 }

@@ -21,6 +21,8 @@ namespace CODE_GameLib
             Items = items;
             Connections = connections;
         }
+        
+        public bool RemoveItem(IItem item) => Items.Remove(item);
 
         public ILocation GetDestination(int targetX, int targetY, Direction direction, IEntity entity)
         {
@@ -32,17 +34,19 @@ namespace CODE_GameLib
 
             var destination = GetConnectionDestination(direction, entity);
 
-            return destination == null ? null : new Location(destination.Room, GetDestinationXy(destination).Item1,
-                GetDestinationXy(destination).Item2);
+            return destination == null
+                ? null
+                : new Location(destination.Room, GetDestinationXy(destination).Item1,
+                    GetDestinationXy(destination).Item2);
         }
-
+        
         private IConnection GetConnectionDestination(Direction direction, IEntity entity)
         {
             if (Connections.All(conn => conn.Direction != direction))
                 return null;
-                    
+
             var connection = Connections.FirstOrDefault(conn => conn.Direction == direction);
-            
+
             if (connection?.Door != null && !connection.Door.CanPassThru(entity))
                 return null;
 
@@ -58,14 +62,9 @@ namespace CODE_GameLib
                 (destination.Room.Height + 1) / 2 - 1);
         }
 
-        private bool IsWall(int x, int y)
-        {
-            return x < 1 || y < 1 || x > Width - 2 || y > Height - 2;
-        }
+        private bool IsWall(int x, int y) => x < 1 || y < 1 || x > Width - 2 || y > Height - 2;
 
-        private bool IsCenterOfWall(int x, int y)
-        {
-            return IsWall(x, y) && (x == (Width + 1) / 2 - 1 || y == (Height + 1) / 2 - 1);
-        }
+        private bool IsCenterOfWall(int x, int y) =>
+            IsWall(x, y) && (x == (Width + 1) / 2 - 1 || y == (Height + 1) / 2 - 1);
     }
 }

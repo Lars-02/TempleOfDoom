@@ -1,3 +1,5 @@
+using CODE_GameLib.Interfaces.Items;
+
 namespace CODE_GameLib.Interfaces
 {
     public interface ILocation : IBaseObservable<ILocation>
@@ -7,5 +9,6 @@ namespace CODE_GameLib.Interfaces
         public int Y { get; }
 
         public bool SetLocation(ILocation location);
+        public IItem GetItem();
     }
 }

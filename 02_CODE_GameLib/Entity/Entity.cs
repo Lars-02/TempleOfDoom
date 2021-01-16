@@ -32,7 +32,11 @@ namespace CODE_GameLib.Entity
             
             var destination = Location.Room.GetDestination(x, y, direction, this);
 
-            return destination != null && Location.SetLocation(destination);
+            if (destination == null || !Location.SetLocation(destination)) return false;
+            
+            Teleported = false;
+            return true;
+
         }
         
         private (int, int) DirectionToPosition(Direction direction)

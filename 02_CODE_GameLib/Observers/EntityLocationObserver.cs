@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using CODE_GameLib.Interfaces;
 using CODE_GameLib.Interfaces.Doors;
+using CODE_GameLib.Interfaces.Entity;
 using CODE_GameLib.Interfaces.Items;
 using CODE_GameLib.Interfaces.Items.BoobyTraps;
 using CODE_GameLib.Interfaces.Items.Wearable;
@@ -11,11 +12,12 @@ namespace CODE_GameLib.Observers
     public class EntityLocationObserver : IObserver<ILocation>
     {
         private readonly IGame _game;
+        private readonly IEntity _entity;
 
-        public EntityLocationObserver(IGame game, ILocation location)
+        public EntityLocationObserver(IGame game, IEntity entity)
         {
             _game = game;
-            location.Subscribe(this);
+            _entity = entity;
         }
 
         public void OnCompleted()
@@ -27,32 +29,37 @@ namespace CODE_GameLib.Observers
         {
             throw new NotImplementedException();
         }
-
-        //TODO make so this is for entity
-        //TODO move to other locations like room
+        
         public void OnNext(ILocation location)
         {
-            var roomItem = location.Room.Items.FirstOrDefault(item =>
-                item.X == location.X && item.Y == location.Y);
-            switch (roomItem)
+            var item = location.GetItem();
+
+            switch (item)
             {
-                case IWearable wearable:
-                    _game.Player.AddToInventory(wearable);
-                    break;
                 case IBoobyTrap boobyTrap:
-                    _game.Player.ReceiveDamage(boobyTrap.Damage);
+                    _entity.ReceiveDamage(boobyTrap.Damage);
                     break;
                 case IPortal portal:
-                    portal.UsePortal(_game.Player);
+                    portal.UsePortal(_entity);
                     break;
-                case IPressurePlate _:
-                    foreach (var connection in location.Room.Connections.Where(conn => conn.Door is IToggleDoor))
-                        connection.Door.Opened = !connection.Door.Opened;
+                default:
+                    if (!(_entity is IPlayer player))
+                        break;
+                    switch (item)
+                    {
+                        case IWearable wearable:
+                            player.AddToInventory(wearable);
+                            break;
+                        case IPressurePlate _:
+                            foreach (var connection in location.Room.Connections.Where(conn => conn.Door is IToggleDoor))
+                                connection.Door.Opened = !connection.Door.Opened;
+                            break;
+                    }
                     break;
             }
 
-            if (roomItem is IWearable || roomItem is IDisappearingTrap)
-                location.Room.Items.Remove(roomItem);
+            if (item is IWearable || item is IDisappearingTrap)
+                location.Room.RemoveItem(item);
 
             _game.Update();
         }
