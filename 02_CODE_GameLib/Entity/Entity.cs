@@ -12,7 +12,8 @@ namespace CODE_GameLib.Entity
             Lives = lives;
         }
 
-        private bool Teleported { get; set; }
+        private bool _teleported;
+        private bool _pushed;
         public ILocation Location { get; }
         public int Lives { get; private set; }
         public bool Died => Lives < 1;
@@ -23,17 +24,28 @@ namespace CODE_GameLib.Entity
 
             var destination = Location.Room.GetDestination(x, y, direction, this);
 
-            if (destination == null || !Location.SetLocation(destination)) return false;
-
-            Teleported = false;
-            return true;
+            return destination != null && Location.SetLocation(destination);
         }
 
         public bool Teleport(ILocation teleportTo)
         {
-            if (Teleported) return false;
-            Teleported = true;
-            return Location.SetLocation(teleportTo);
+            if (_teleported) return false;
+            _teleported = true;
+            Location.SetLocation(teleportTo);
+            _teleported = false;
+            return true;
+        }
+        
+        public bool Push(Direction direction)
+        {
+            if (_pushed)
+            {
+                _pushed = false;
+                return false;
+            }
+            _pushed = true;
+            Move(direction);
+            return true;
         }
 
         public bool ReceiveDamage(int damage)
@@ -79,6 +91,7 @@ namespace CODE_GameLib.Entity
         public int Lives { get; }
         public bool Died { get; }
         public bool Teleport(ILocation teleportTo);
+        public bool Push(Direction direction);
         public bool Move(Direction direction);
         public bool ReceiveDamage(int damage);
     }

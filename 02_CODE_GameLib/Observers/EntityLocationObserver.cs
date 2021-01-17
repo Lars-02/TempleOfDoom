@@ -37,7 +37,7 @@ namespace CODE_GameLib.Observers
                     _entity.ReceiveDamage(boobyTrap.Damage);
                     break;
                 case IConveyorBelt conveyorBelt:
-                    _entity.Move(conveyorBelt.Direction);
+                    conveyorBelt.UseConveyorBelt(_entity);
                     break;
                 case IPortal portal:
                     portal.UsePortal(_entity);
