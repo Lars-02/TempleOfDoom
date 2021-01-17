@@ -39,9 +39,10 @@ namespace CODE_GameLib.Factories
         {
             var items = new List<IItem>();
 
-            if (!roomJObject.ContainsKey("items")) return items;
-
-            items.AddRange(roomJObject["items"].Select(ItemFactory.CreateItem));
+            if (roomJObject.ContainsKey("items"))
+                items.AddRange(roomJObject["items"].Select(ItemFactory.CreateItem));
+            if (roomJObject.ContainsKey("specialFloorTiles"))
+                items.AddRange(roomJObject["specialFloorTiles"].Select(ItemFactory.CreateItem));
 
             return items;
         }

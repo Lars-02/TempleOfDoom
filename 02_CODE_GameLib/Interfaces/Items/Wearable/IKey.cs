@@ -1,9 +1,9 @@
-using System.Drawing;
+using System;
 
 namespace CODE_GameLib.Interfaces.Items.Wearable
 {
     public interface IKey : IWearable
     {
-        public Color Color { get; }
+        public ConsoleColor Color { get; }
     }
 }

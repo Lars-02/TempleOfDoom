@@ -7,6 +7,7 @@ namespace CODE_PersistenceLib.Factories
 {
     public static class EntityLocationFactory
     {
+        //TODO Move in with Player Factory to remove this one
         public static ILocation CreateEntityLocation(IReadOnlyDictionary<int, IRoom> rooms, JToken playerJToken)
         {
             return new Location(

@@ -1,3 +1,4 @@
+using System;
 using CODE_GameLib.Interfaces.Items.Wearable;
 using System.Drawing;
 
@@ -7,9 +8,9 @@ namespace CODE_GameLib.Items
     {
         public int X { get; }
         public int Y { get; }
-        public Color Color { get; }
+        public ConsoleColor Color { get; }
 
-        public Key(int x, int y, Color color)
+        public Key(int x, int y, ConsoleColor color)
         {
             X = x;
             Y = y;

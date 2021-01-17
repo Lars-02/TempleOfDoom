@@ -1,10 +1,9 @@
-﻿using CODE_GameLib.Doors;
-using Newtonsoft.Json.Linq;
-using System;
-using System.Drawing;
+﻿using System;
+using CODE_GameLib.Doors;
 using CODE_GameLib.Interfaces.Doors;
+using Newtonsoft.Json.Linq;
 
-namespace CODE_GameLib.Factories
+namespace CODE_PersistenceLib.Factories
 {
     public static class DoorFactory
     {
@@ -12,7 +11,7 @@ namespace CODE_GameLib.Factories
         {
             return doorJToken["type"].Value<string>() switch
             {
-                "colored" => new ColoredDoor(Color.FromName(doorJToken["color"].Value<string>())),
+                "colored" => new ColoredDoor(Util.ConvertJsonToConsoleColor(doorJToken["color"].Value<string>())),
                 "toggle" => new ToggleDoor(),
                 "closing gate" => new ClosingDoor(),
                 _ => throw new ArgumentException("Invalid door type")

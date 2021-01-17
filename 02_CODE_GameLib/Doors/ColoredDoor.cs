@@ -1,3 +1,4 @@
+using System;
 using CODE_GameLib.Interfaces;
 using CODE_GameLib.Interfaces.Items.Wearable;
 using System.Drawing;
@@ -9,9 +10,9 @@ namespace CODE_GameLib.Doors
 {
     public class ColoredDoor : Door, IColoredDoor
     {
-        public Color Color { get; }
+        public ConsoleColor Color { get; }
 
-        public ColoredDoor(Color color)
+        public ColoredDoor(ConsoleColor color)
         {
             Color = color;
         }

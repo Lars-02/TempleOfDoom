@@ -40,6 +40,9 @@ namespace CODE_GameLib.Observers
                 case IBoobyTrap boobyTrap:
                     _entity.ReceiveDamage(boobyTrap.Damage);
                     break;
+                case IConveyorBelt conveyorBelt:
+                    _entity.Move(conveyorBelt.Direction);
+                    break;
                 case IPortal portal:
                     portal.UsePortal(_entity);
                     break;

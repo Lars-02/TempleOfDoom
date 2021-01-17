@@ -28,10 +28,10 @@ namespace CODE_GameLib.Observers
 
         public void OnNext(IEntity entity)
         {
-            if (entity.Died)
-                _game.Destroy(false);
             if (!(entity is IPlayer player))
                 return;
+            if (entity.Died)
+                _game.Destroy(false);
             if (player.Inventory.Count(wearable => wearable is ISankaraStone) >= 5 ||
                 (player.Cheats.Contains(Cheat.OneMoreStone) && player.Inventory.Last() is ISankaraStone))
                 _game.Destroy(true);

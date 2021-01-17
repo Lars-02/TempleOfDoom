@@ -1,5 +1,4 @@
-﻿using CODE_GameLib;
-using CODE_GameLib.Enums;
+﻿using CODE_GameLib.Enums;
 using CODE_GameLib.Interfaces.Doors;
 
 namespace CODE_Frontend.ViewModel
@@ -27,7 +26,7 @@ namespace CODE_Frontend.ViewModel
                     return new ConsoleText("⊥");
                 case IColoredDoor coloredDoor:
                 {
-                    var consoleText = new ConsoleText("|", Util.ColorToConsoleColor(coloredDoor.Color));
+                    var consoleText = new ConsoleText("|", coloredDoor.Color);
                     
                     if (direction == Direction.North || direction == Direction.South)
                         consoleText.Text = "−";
