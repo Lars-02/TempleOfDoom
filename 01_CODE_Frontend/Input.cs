@@ -37,13 +37,15 @@ namespace CODE_Frontend
                     tickData.ToggleCheat = Cheat.DoorPortal;
                     break;
 
-                case ConsoleKey.L:
-                    tickData.ToggleCheat = Cheat.Invincible;
-                    break;
-
-                case ConsoleKey.D:
-                    tickData.ToggleCheat = Cheat.IgnoreDoors;
-                    break;
+                // These cheats are disabled because these are part of assigment A an not B
+                
+                // case ConsoleKey.L:
+                //     tickData.ToggleCheat = Cheat.Invincible;
+                //     break;
+                //
+                // case ConsoleKey.D:
+                //     tickData.ToggleCheat = Cheat.IgnoreDoors;
+                //     break;
 
                 case ConsoleKey.Spacebar:
                     tickData.Shoot = true;
