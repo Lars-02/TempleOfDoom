@@ -58,7 +58,7 @@ namespace CODE_GameLib
 
         public bool IsEnemy(IEnumerable<IEnemy> enemies)
         {
-            return enemies.Any(enemy => enemy.Location == this);
+            return enemies.Any(enemy => enemy.Location.X == X && enemy.Location.Y == Y && enemy.Location.Room == Room);
         }
     }
 

@@ -31,20 +31,33 @@ namespace CODE_GameLib
         public IPlayer Player { get; }
         public List<IEnemy> Enemies { get; }
 
+        /// <summary>
+        /// Is one game tick. So one action the player makes.
+        /// </summary>
+        /// <param name="tickData"> The action the player took this tick. </param>
         public void Tick(TickData tickData)
         {
+            // Check if the game is quit
             if (tickData.Quit)
             {
                 Destroy(false);
                 return;
             }
 
+            // Check if the player moves
             if (tickData.MovePlayer != null)
             {
+                // Move player
                 if (!Player.Move((Direction) tickData.MovePlayer)) return;
+                
+                // Move enemies
                 foreach (var enemy in Enemies.Where(enemy =>
                     !enemy.Died && enemy.Location.Room == Player.Location.Room))
                     enemy.Move();
+                
+                // Check if player is on an enemy
+                if (Player.Location.IsEnemy(Enemies))
+                    Player.ReceiveDamage(1);
             }
 
             if (tickData.Shoot)

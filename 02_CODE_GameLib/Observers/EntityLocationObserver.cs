@@ -64,16 +64,17 @@ namespace CODE_GameLib.Observers
                         case IPressurePlate pressurePlate:
                             pressurePlate.ActivatePressurePlate(location.Room.Connections);
                             break;
-                    }
+                        default:
+                            if (location.IsEnemy(_game.Enemies))
+                            {
+                                player.ReceiveDamage(1);
+                                return;
+                            }
+                            break;
+                        }
                     break;
             }
             
-            if (player != null && location.IsEnemy(_game.Enemies))
-            {
-                player.ReceiveDamage(1);
-                return;                
-            }
-
             if (roomObject is IWearable || roomObject is IDisappearingTrap)
                 location.Room.RemoveItem(roomObject);
         }
