@@ -1,11 +1,17 @@
-using CODE_GameLib.Interfaces.RoomObjects.BoobyTraps;
-
-namespace CODE_GameLib.Objects.RoomObjects
+namespace CODE_GameLib.Objects.RoomObjects.BoobyTraps
 {
     public class BoobyTrap : RoomObject, IBoobyTrap
     {
+        public BoobyTrap(int x, int y, int damage) : base(x, y)
+        {
+            Damage = damage;
+        }
+
         public int Damage { get; }
-        
-        public BoobyTrap(int x, int y, int damage) : base(x, y) => Damage = damage;
+    }
+
+    public interface IBoobyTrap : IRoomObject
+    {
+        public int Damage { get; }
     }
 }

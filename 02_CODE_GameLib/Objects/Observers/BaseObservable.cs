@@ -33,4 +33,8 @@ namespace CODE_GameLib.Objects.Observers
             _unsubscriber.Invoke();
         }
     }
+
+    public interface IBaseObservable<out T> : IObservable<T>
+    {
+    }
 }

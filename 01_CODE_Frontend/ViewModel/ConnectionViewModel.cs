@@ -1,6 +1,6 @@
 ﻿using System;
 using CODE_GameLib.Enums;
-using CODE_GameLib.Interfaces;
+using CODE_GameLib.Objects;
 
 namespace CODE_Frontend.ViewModel
 {

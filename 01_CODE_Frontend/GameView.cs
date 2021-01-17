@@ -2,7 +2,7 @@
 using System.Text;
 using CODE_Frontend.Modules;
 using CODE_Frontend.ViewModel;
-using CODE_GameLib.Interfaces;
+using CODE_GameLib.Objects;
 
 namespace CODE_Frontend
 {

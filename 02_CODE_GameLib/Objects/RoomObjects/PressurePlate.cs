@@ -1,8 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
-using CODE_GameLib.Interfaces;
-using CODE_GameLib.Interfaces.Doors;
-using CODE_GameLib.Interfaces.RoomObjects;
+using CODE_GameLib.Objects.Doors;
 
 namespace CODE_GameLib.Objects.RoomObjects
 {
@@ -18,5 +16,10 @@ namespace CODE_GameLib.Objects.RoomObjects
                 if (door is IToggleDoor toggleDoor)
                     toggleDoor.ActivateToggleDoor();
         }
+    }
+
+    public interface IPressurePlate : IRoomObject
+    {
+        public void ActivatePressurePlate(IEnumerable<IConnection> connections);
     }
 }

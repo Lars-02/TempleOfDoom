@@ -1,6 +1,5 @@
-﻿using CODE_GameLib.Interfaces;
-using CODE_GameLib.Interfaces.Entity;
-using CODE_GameLib.Objects;
+﻿using CODE_GameLib.Objects;
+using CODE_GameLib.Objects.Entity;
 
 namespace CODE_PersistenceLib.Factories
 {

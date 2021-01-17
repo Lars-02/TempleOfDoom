@@ -1,9 +1,8 @@
 using System;
 using System.Linq;
 using CODE_GameLib.Enums;
-using CODE_GameLib.Interfaces;
-using CODE_GameLib.Interfaces.Entity;
-using CODE_GameLib.Interfaces.RoomObjects.Wearable;
+using CODE_GameLib.Objects.Entity;
+using CODE_GameLib.Objects.RoomObjects.Wearable;
 
 namespace CODE_GameLib.Objects.Observers
 {

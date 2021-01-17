@@ -1,6 +1,5 @@
 ﻿using CODE_GameLib.Enums;
-using CODE_GameLib.Interfaces;
-using CODE_GameLib.Interfaces.Doors;
+using CODE_GameLib.Objects.Doors;
 
 namespace CODE_GameLib.Objects
 {
@@ -13,6 +12,14 @@ namespace CODE_GameLib.Objects
             Door = door;
         }
 
+        public IRoom Room { get; }
+        public IConnection Destination { get; set; }
+        public Direction Direction { get; }
+        public IDoor Door { get; }
+    }
+
+    public interface IConnection
+    {
         public IRoom Room { get; }
         public IConnection Destination { get; set; }
         public Direction Direction { get; }

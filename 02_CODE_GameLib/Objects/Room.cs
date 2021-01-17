@@ -1,10 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using CODE_GameLib.Enums;
-using CODE_GameLib.Interfaces;
-using CODE_GameLib.Interfaces.Doors;
-using CODE_GameLib.Interfaces.Entity;
-using CODE_GameLib.Interfaces.RoomObjects;
+using CODE_GameLib.Objects.Doors;
+using CODE_GameLib.Objects.Entity;
+using CODE_GameLib.Objects.RoomObjects;
 
 namespace CODE_GameLib.Objects
 {
@@ -77,5 +76,16 @@ namespace CODE_GameLib.Objects
         {
             return IsWall(x, y) && (x == (Width + 1) / 2 - 1 || y == (Height + 1) / 2 - 1);
         }
+    }
+
+    public interface IRoom
+    {
+        public int Width { get; }
+        public int Height { get; }
+        public List<IRoomObject> Items { get; }
+        public IEnumerable<IConnection> Connections { get; }
+
+        public ILocation GetDestination(int targetX, int targetY, Direction direction, IEntity entity);
+        public bool RemoveItem(IRoomObject roomObject);
     }
 }

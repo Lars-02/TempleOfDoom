@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using CODE_GameLib.Enums;
-using CODE_GameLib.Interfaces;
-using CODE_GameLib.Interfaces.Doors;
 using CODE_GameLib.Objects;
+using CODE_GameLib.Objects.Doors;
 using Newtonsoft.Json.Linq;
 
 namespace CODE_PersistenceLib.Factories

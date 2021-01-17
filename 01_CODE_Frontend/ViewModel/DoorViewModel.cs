@@ -1,5 +1,5 @@
 ﻿using CODE_GameLib.Enums;
-using CODE_GameLib.Interfaces.Doors;
+using CODE_GameLib.Objects.Doors;
 
 namespace CODE_Frontend.ViewModel
 {

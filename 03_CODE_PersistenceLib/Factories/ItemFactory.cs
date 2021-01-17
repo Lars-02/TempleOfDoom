@@ -1,6 +1,7 @@
 ﻿using System;
-using CODE_GameLib.Interfaces.RoomObjects;
 using CODE_GameLib.Objects.RoomObjects;
+using CODE_GameLib.Objects.RoomObjects.BoobyTraps;
+using CODE_GameLib.Objects.RoomObjects.Wearable;
 using Newtonsoft.Json.Linq;
 
 namespace CODE_PersistenceLib.Factories

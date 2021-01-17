@@ -1,7 +1,6 @@
 using System.Linq;
-using CODE_GameLib.Interfaces;
-using CODE_GameLib.Interfaces.RoomObjects;
 using CODE_GameLib.Objects.Observers;
+using CODE_GameLib.Objects.RoomObjects;
 
 namespace CODE_GameLib.Objects
 {
@@ -36,5 +35,15 @@ namespace CODE_GameLib.Objects
         {
             return Room.Items.FirstOrDefault(item => item.X == X && item.Y == Y);
         }
+    }
+
+    public interface ILocation : IBaseObservable<ILocation>
+    {
+        public IRoom Room { get; }
+        public int X { get; }
+        public int Y { get; }
+
+        public bool SetLocation(ILocation location);
+        public IRoomObject GetItem();
     }
 }

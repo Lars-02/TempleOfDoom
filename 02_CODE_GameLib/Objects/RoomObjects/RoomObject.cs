@@ -1,5 +1,3 @@
-using CODE_GameLib.Interfaces.RoomObjects;
-
 namespace CODE_GameLib.Objects.RoomObjects
 {
     public class RoomObject : IRoomObject
@@ -10,6 +8,12 @@ namespace CODE_GameLib.Objects.RoomObjects
             Y = y;
         }
 
+        public int X { get; }
+        public int Y { get; }
+    }
+
+    public interface IRoomObject
+    {
         public int X { get; }
         public int Y { get; }
     }

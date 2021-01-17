@@ -1,4 +1,4 @@
-namespace CODE_GameLib.Interfaces.RoomObjects.Wearable
+namespace CODE_GameLib.Objects.RoomObjects.Wearable
 {
     public interface IWearable : IRoomObject
     {

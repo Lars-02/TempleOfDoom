@@ -1,4 +1,4 @@
-namespace CODE_GameLib.Interfaces.Entity
+namespace CODE_GameLib.Objects.Entity
 {
     public interface IEnemy : IEntity
     {

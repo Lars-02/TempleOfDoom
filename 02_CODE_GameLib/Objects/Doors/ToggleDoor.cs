@@ -1,5 +1,3 @@
-using CODE_GameLib.Interfaces.Doors;
-
 namespace CODE_GameLib.Objects.Doors
 {
     public class ToggleDoor : Door, IToggleDoor
@@ -8,5 +6,10 @@ namespace CODE_GameLib.Objects.Doors
         {
             Opened = !Opened;
         }
+    }
+
+    public interface IToggleDoor : IDoor
+    {
+        public void ActivateToggleDoor();
     }
 }

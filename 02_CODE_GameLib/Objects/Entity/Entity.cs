@@ -1,7 +1,5 @@
 using System;
 using CODE_GameLib.Enums;
-using CODE_GameLib.Interfaces;
-using CODE_GameLib.Interfaces.Entity;
 using CODE_GameLib.Objects.Observers;
 
 namespace CODE_GameLib.Objects.Entity
@@ -79,5 +77,15 @@ namespace CODE_GameLib.Objects.Entity
 
             return (targetX, targetY);
         }
+    }
+
+    public interface IEntity : IBaseObservable<IEntity>
+    {
+        public ILocation Location { get; }
+        public int Lives { get; }
+        public bool Died { get; }
+        public bool Teleport(ILocation teleportTo);
+        public bool Move(Direction direction);
+        public bool ReceiveDamage(int damage);
     }
 }

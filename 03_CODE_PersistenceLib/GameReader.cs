@@ -2,8 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using CODE_GameLib.Interfaces;
-using CODE_GameLib.Interfaces.Entity;
+using CODE_GameLib.Objects;
+using CODE_GameLib.Objects.Entity;
 using CODE_PersistenceLib.Factories;
 using Newtonsoft.Json.Linq;
 
