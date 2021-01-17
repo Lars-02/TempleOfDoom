@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using CODE_GameLib;
+using CODE_GameLib.Entity;
 using CODE_GameLib.RoomObjects;
+using CODE_TempleOfDoom_DownloadableContent;
 using Newtonsoft.Json.Linq;
 
 namespace CODE_PersistenceLib.Factories
@@ -10,7 +13,7 @@ namespace CODE_PersistenceLib.Factories
     public static class RoomFactory
     {
         public static IRoom CreateRoom(JObject roomJObject, IDictionary<int, List<IConnection>> connections,
-            out int roomId)
+            out int roomId, out IEnumerable<IEnemy> enemies)
         {
             roomId = roomJObject["id"].Value<int>();
 
@@ -31,7 +34,11 @@ namespace CODE_PersistenceLib.Factories
             if (width % 2 == 0)
                 throw new ArgumentException("Width must be even");
 
-            return new Room(width, height, items, connections[roomId]);
+            var room = new Room(width, height, items, connections[roomId]);
+            
+            enemies = GetEnemiesFromRoom(roomJObject, room);
+
+            return room;
         }
 
         private static List<IRoomObject> GetItemsForRoom(JObject roomJObject)
@@ -44,6 +51,17 @@ namespace CODE_PersistenceLib.Factories
                 items.AddRange(roomJObject["specialFloorTiles"].Select(ItemFactory.CreateItem));
 
             return items;
+        }
+        
+        private static IEnumerable<IEnemy> GetEnemiesFromRoom(JObject roomJObject, IRoom room)
+        {
+            var enemies = new List<IEnemy>();
+
+            if (!roomJObject.ContainsKey("enemies")) return enemies;
+
+            enemies.AddRange(roomJObject["enemies"]!.Select(enemy => EnemyFactory.CreateEnemy(enemy, room)));
+
+            return enemies;
         }
     }
 }

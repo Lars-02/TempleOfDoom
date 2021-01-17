@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using CODE_GameLib.Entity;
 using CODE_GameLib.Enums;
 using CODE_GameLib.Observers;
@@ -7,13 +9,19 @@ namespace CODE_GameLib
 {
     public class Game : IGame
     {
-        public Game(IPlayer player)
+        public Game(IPlayer player, List<IEnemy> enemies)
         {
             Player = player;
+            Enemies = enemies;
 
             Player.Subscribe(new EntityObserver(this));
-            Player.Subscribe(new PlayerObserver(this));
             Player.Location.Subscribe(new EntityLocationObserver(this, Player));
+
+            foreach (var enemy in Enemies)
+            {
+                enemy.Subscribe(new EntityObserver(this));
+                enemy.Location.Subscribe(new EntityLocationObserver(this, enemy));
+            }
         }
 
         public event EventHandler<Game> Updated;
@@ -21,6 +29,7 @@ namespace CODE_GameLib
         public bool Quit { get; private set; }
         public bool Won { get; private set; }
         public IPlayer Player { get; }
+        public List<IEnemy> Enemies { get; }
 
         public void Tick(TickData tickData)
         {
@@ -32,7 +41,11 @@ namespace CODE_GameLib
 
             if (tickData.MovePlayer != null)
             {
-                Player.Move((Direction) tickData.MovePlayer);
+                if (!Player.Move((Direction) tickData.MovePlayer)) return;
+                foreach (var enemy in Enemies.Where(enemy => !enemy.Died && enemy.Location.Room == Player.Location.Room))
+                    enemy.Move();
+                
+                Update();
                 return;
             }
 
@@ -60,6 +73,7 @@ namespace CODE_GameLib
         public bool Quit { get; }
         public bool Won { get; }
         public IPlayer Player { get; }
+        public List<IEnemy> Enemies { get; }
         public event EventHandler<Game> Updated;
         public void Update();
         public void Tick(TickData tickData);

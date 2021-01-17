@@ -14,8 +14,13 @@ namespace CODE_GameLib.Entity
 
         private bool _teleported;
         private bool _pushed;
-        public ILocation Location { get; }
-        public int Lives { get; private set; }
+
+        protected Entity()
+        {
+        }
+
+        public virtual ILocation Location { get; }
+        public virtual int Lives { get; private set; }
         public bool Died => Lives < 1;
 
         public bool Move(Direction direction)
@@ -48,13 +53,12 @@ namespace CODE_GameLib.Entity
             return true;
         }
 
-        public bool ReceiveDamage(int damage)
+        public virtual void ReceiveDamage(int damage)
         {
             if (damage <= 0)
-                return false;
+                return;
             Lives -= damage;
             NotifyObservers(this);
-            return true;
         }
 
         private (int, int) DirectionToPosition(Direction direction)
@@ -93,6 +97,6 @@ namespace CODE_GameLib.Entity
         public bool Teleport(ILocation teleportTo);
         public bool Push(Direction direction);
         public bool Move(Direction direction);
-        public bool ReceiveDamage(int damage);
+        public void ReceiveDamage(int damage);
     }
 }

@@ -40,7 +40,7 @@ namespace CODE_GameLib
             if (destination == null)
                 return null;
 
-            var (x, y) = GetDestinationXy(direction, destination);
+            var (x, y) = GetCoordinates(direction, destination);
 
             return new Location(destination, x, y);
         }
@@ -59,7 +59,7 @@ namespace CODE_GameLib
             return null;
         }
 
-        private static (int, int) GetDestinationXy(Direction origin, IRoom destination)
+        private static (int, int) GetCoordinates(Direction origin, IRoom destination)
         {
             if (origin == Direction.North || origin == Direction.South)
                 return ((destination.Width + 1) / 2 - 1,
@@ -68,7 +68,7 @@ namespace CODE_GameLib
                 (destination.Height + 1) / 2 - 1);
         }
 
-        private bool IsWall(int x, int y)
+        public bool IsWall(int x, int y)
         {
             return x < 1 || y < 1 || x > Width - 2 || y > Height - 2;
         }
@@ -88,5 +88,6 @@ namespace CODE_GameLib
 
         public ILocation GetDestination(int targetX, int targetY, Direction direction, IEntity entity);
         public bool RemoveItem(IRoomObject roomObject);
+        public bool IsWall(int x, int y);
     }
 }

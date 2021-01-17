@@ -1,6 +1,6 @@
 namespace CODE_GameLib.RoomObjects
 {
-    public class RoomObject : IRoomObject
+    public abstract class RoomObject : IRoomObject
     {
         protected RoomObject(int x, int y)
         {

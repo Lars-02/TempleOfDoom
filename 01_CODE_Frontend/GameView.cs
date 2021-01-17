@@ -28,7 +28,7 @@ namespace CODE_Frontend
 
             Console.WriteLine();
 
-            var grid = new RoomViewModel(game.Player.Location.Room, game.Player).GetGrid();
+            var grid = new RoomViewModel(game.Player.Location.Room, game.Player, game.Enemies).GetGrid();
 
             var spacing = new ConsoleText(" ");
 

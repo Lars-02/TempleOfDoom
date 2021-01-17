@@ -60,8 +60,6 @@ namespace CODE_GameLib.Observers
 
             if (item is IWearable || item is IDisappearingTrap)
                 location.Room.RemoveItem(item);
-
-            _game.Update();
         }
     }
 }

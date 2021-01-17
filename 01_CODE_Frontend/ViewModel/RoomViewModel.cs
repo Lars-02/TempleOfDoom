@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using CODE_GameLib;
 using CODE_GameLib.Entity;
@@ -9,12 +11,14 @@ namespace CODE_Frontend.ViewModel
     {
         private readonly ConsoleText[,] _grid;
         private readonly IPlayer _player;
+        private readonly List<IEnemy> _enemies;
         private readonly IRoom _room;
 
-        public RoomViewModel(IRoom room, IPlayer player)
+        public RoomViewModel(IRoom room, IPlayer player, List<IEnemy> enemies)
         {
             _room = room;
             _player = player;
+            _enemies = enemies;
             _grid = new ConsoleText[room.Width, room.Height];
         }
 
@@ -30,10 +34,14 @@ namespace CODE_Frontend.ViewModel
             // Set items
             foreach (var item in _room.Items.Select(item => new ItemViewModel(item)))
                 _grid[item.X, item.Y] = item.View;
+            
+            // Set enemies
+            foreach (var enemy in _enemies.Where(enemy => enemy.Location.Room == _room).Select(enemy => new PlayerViewModel(enemy)))
+                _grid[enemy.X, enemy.Y] = enemy.View;
 
             // Set player
             var playerViewModel = new PlayerViewModel(_player);
-            _grid[playerViewModel.X, playerViewModel.Y] = PlayerViewModel.View;
+            _grid[playerViewModel.X, playerViewModel.Y] = playerViewModel.View;
 
             return _grid;
         }
