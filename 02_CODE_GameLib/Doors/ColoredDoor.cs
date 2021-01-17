@@ -7,9 +7,8 @@ using CODE_GameLib.Interfaces.Entity;
 
 namespace CODE_GameLib.Doors
 {
-    public class ColoredDoor : IColoredDoor
+    public class ColoredDoor : Door, IColoredDoor
     {
-        public bool Opened { get; set; }
         public Color Color { get; }
 
         public ColoredDoor(Color color)
@@ -17,7 +16,7 @@ namespace CODE_GameLib.Doors
             Color = color;
         }
 
-        public bool CanPassThru(IEntity entity)
+        public override bool PassThru(IEntity entity)
         {
             if (!(entity is IPlayer player))
                 return false;

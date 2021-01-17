@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using CODE_GameLib.Doors;
 using CODE_GameLib.Interfaces;
 using CODE_GameLib.Interfaces.Doors;
 using CODE_GameLib.Interfaces.Entity;
@@ -50,9 +51,8 @@ namespace CODE_GameLib.Observers
                         case IWearable wearable:
                             player.AddToInventory(wearable);
                             break;
-                        case IPressurePlate _:
-                            foreach (var connection in location.Room.Connections.Where(conn => conn.Door is IToggleDoor))
-                                connection.Door.Opened = !connection.Door.Opened;
+                        case IPressurePlate pressurePlate:
+                            pressurePlate.ActivatePressurePlate(location.Room.Connections);
                             break;
                     }
                     break;

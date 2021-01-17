@@ -4,21 +4,17 @@ using CODE_GameLib.Interfaces.Entity;
 
 namespace CODE_GameLib.Doors
 {
-    public class ClosingDoor : IClosingDoor
+    public class ClosingDoor : Door, IClosingDoor
     {
-        public bool Opened { get; set; }
-
         public ClosingDoor()
         {
             Opened = true;
         }
 
-        public bool CanPassThru(IEntity entity)
+        public override bool PassThru(IEntity entity)
         {
             if (!Opened) return false;
-
             Opened = false;
-
             return true;
         }
     }

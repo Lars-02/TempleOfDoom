@@ -48,7 +48,7 @@ namespace CODE_GameLib
 
             var connection = Connections.FirstOrDefault(conn => conn.Direction == direction);
 
-            if (connection?.Door == null || connection.Door.CanPassThru(entity)) return connection?.Destination;
+            if (connection?.Door == null || connection.Door.PassThru(entity)) return connection?.Destination;
             
             if (connection.Door is IClosingDoor && entity is IPlayer player &&
                 player.Cheats.Contains(Cheat.DoorPortal))

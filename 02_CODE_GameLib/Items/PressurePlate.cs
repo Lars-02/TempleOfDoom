@@ -1,3 +1,7 @@
+using System.Collections.Generic;
+using System.Linq;
+using CODE_GameLib.Interfaces;
+using CODE_GameLib.Interfaces.Doors;
 using CODE_GameLib.Interfaces.Items;
 
 namespace CODE_GameLib.Items
@@ -11,6 +15,13 @@ namespace CODE_GameLib.Items
         {
             X = x;
             Y = y;
+        }
+        
+        public void ActivatePressurePlate(IEnumerable<IConnection> connections)
+        {
+            foreach (var door in connections.Select(conn => conn.Door))
+                if (door is IToggleDoor toggleDoor)
+                    toggleDoor.ActivateToggleDoor();
         }
     }
 }
