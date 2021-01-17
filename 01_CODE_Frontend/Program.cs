@@ -1,17 +1,28 @@
 ﻿using System;
+using System.Collections.Generic;
 using CODE_PersistenceLib;
 
 namespace CODE_Frontend
 {
     internal static class Program
     {
+        // Which gameFile to use
+        private const int UseGameFile = 1;
+
+        // All included levels
+        private static readonly string[] GameFiles =
+        {
+            "./Levels/TempleOfDoom.json", 
+            "./Levels/TempleOfDoom_Extended_B.json", 
+            "./Levels/TempleOfDoom_Test_Enemy_Conveyor_Belt.json", 
+            "./Levels/TempleOfDoom_Test_Enemy_Conveyor_Belt.json"
+        };
+
         private static void Main()
         {
             while (true)
             {
-                // TODO this is the old game file...
-                //var game = GameReader.Read(@"./Levels/TempleOfDoom.json");
-                var game = GameReader.Read(@"./Levels/TempleOfDoom_Extended_B.json");
+                var game = GameReader.Read(GameFiles[UseGameFile]);
 
                 var gameView = new GameView();
                 game.Updated += (uSender, uGame) => gameView.Update(uGame);

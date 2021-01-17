@@ -12,16 +12,16 @@ namespace CODE_GameLib.RoomObjects
 
         public Direction Direction { get; }
         
-        public bool UseConveyorBelt(IEntity entity)
+        public void UseConveyorBelt(IEntity entity)
         {
-            return entity.Push(Direction);
+            entity.Push(Direction);
         }
     }
 
     public interface IConveyorBelt : IRoomObject
     {
         Direction Direction { get; }
-        public bool UseConveyorBelt(IEntity entity);
+        public void UseConveyorBelt(IEntity entity);
     }
     
     

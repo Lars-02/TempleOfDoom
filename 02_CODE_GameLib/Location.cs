@@ -1,4 +1,7 @@
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
+using CODE_GameLib.Entity;
 using CODE_GameLib.Observers;
 using CODE_GameLib.RoomObjects;
 
@@ -35,7 +38,7 @@ namespace CODE_GameLib
             return true;
         }
 
-        public virtual IRoomObject GetItem()
+        public virtual IRoomObject GetRoomObject()
         {
             return Room.Items.FirstOrDefault(item => item.X == X && item.Y == Y);
         }
@@ -52,6 +55,11 @@ namespace CODE_GameLib
                    X == location.X && Y == location.Y + 1 ||
                    X == location.X && Y == location.Y - 1;
         }
+
+        public bool IsEnemy(IEnumerable<IEnemy> enemies)
+        {
+            return enemies.Any(enemy => enemy.Location == this);
+        }
     }
 
     public interface ILocation : IBaseObservable<ILocation>
@@ -61,7 +69,8 @@ namespace CODE_GameLib
         public int Y { get; }
 
         public bool SetLocation(ILocation location);
-        public IRoomObject GetItem();
+        public IRoomObject GetRoomObject();
         public bool WithinShootingRange(ILocation location);
+        public bool IsEnemy(IEnumerable<IEnemy> enemies);
     }
 }

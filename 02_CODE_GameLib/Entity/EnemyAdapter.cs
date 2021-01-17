@@ -1,4 +1,3 @@
-using System;
 using CODE_TempleOfDoom_DownloadableContent;
 
 namespace CODE_GameLib.Entity
@@ -25,6 +24,7 @@ namespace CODE_GameLib.Entity
         public void Move()
         {
             _adaptee.Move();
+            _location.Update();
         }
     }
 

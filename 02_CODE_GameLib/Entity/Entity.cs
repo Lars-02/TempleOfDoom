@@ -40,17 +40,12 @@ namespace CODE_GameLib.Entity
             _teleported = false;
             return true;
         }
-        
-        public bool Push(Direction direction)
+
+        public void Push(Direction direction)
         {
             if (_pushed)
-            {
                 _pushed = false;
-                return false;
-            }
-            _pushed = true;
-            Move(direction);
-            return true;
+            _pushed = Move(direction);
         }
 
         public virtual void ReceiveDamage(int damage)
@@ -95,7 +90,7 @@ namespace CODE_GameLib.Entity
         public int Lives { get; }
         public bool Died { get; }
         public bool Teleport(ILocation teleportTo);
-        public bool Push(Direction direction);
+        public void Push(Direction direction);
         public bool Move(Direction direction);
         public void ReceiveDamage(int damage);
     }

@@ -27,11 +27,21 @@ namespace CODE_GameLib.Observers
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// This will get updated when the location is updated.
+        /// When this happens the method will look for any RoomObjects or Entity's in it's place.
+        /// If it finds any it preforms an action for that item. 
+        /// </summary>
+        /// <param name="location"> Updated location from an entity</param>
         public void OnNext(ILocation location)
         {
-            var item = location.GetItem();
+            // Get roomObject if there is one
+            var roomObject = location.GetRoomObject();
+            
+            // Get player
+            var player = _entity as IPlayer;
 
-            switch (item)
+            switch (roomObject)
             {
                 case IBoobyTrap boobyTrap:
                     _entity.ReceiveDamage(boobyTrap.Damage);
@@ -43,9 +53,10 @@ namespace CODE_GameLib.Observers
                     portal.UsePortal(_entity);
                     break;
                 default:
-                    if (!(_entity is IPlayer player))
+                    // Check if there is a player
+                    if (player == null)
                         break;
-                    switch (item)
+                    switch (roomObject)
                     {
                         case IWearable wearable:
                             player.AddToInventory(wearable);
@@ -54,12 +65,17 @@ namespace CODE_GameLib.Observers
                             pressurePlate.ActivatePressurePlate(location.Room.Connections);
                             break;
                     }
-
                     break;
             }
+            
+            if (player != null && location.IsEnemy(_game.Enemies))
+            {
+                player.ReceiveDamage(1);
+                return;                
+            }
 
-            if (item is IWearable || item is IDisappearingTrap)
-                location.Room.RemoveItem(item);
+            if (roomObject is IWearable || roomObject is IDisappearingTrap)
+                location.Room.RemoveItem(roomObject);
         }
     }
 }

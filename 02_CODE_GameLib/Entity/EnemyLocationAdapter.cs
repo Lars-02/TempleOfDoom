@@ -26,6 +26,11 @@ namespace CODE_GameLib.Entity
             protected set => _adaptee.CurrentYLocation = value;
         }
 
+        public void Update()
+        {
+            NotifyObservers(this);
+        }
+        
         public override bool SetLocation(ILocation location)
         {
             if (location.Room.IsWall(location.X, location.Y))
@@ -34,7 +39,6 @@ namespace CODE_GameLib.Entity
             X = location.X;
             Y = location.Y;
             NotifyObservers(this);
-
             return true;
         }
     }
