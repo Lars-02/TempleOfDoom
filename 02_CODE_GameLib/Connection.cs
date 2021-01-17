@@ -5,7 +5,7 @@ namespace CODE_GameLib
 {
     public class Connection : IConnection
     {
-        public Connection(IRoom room, Direction direction, IDoor door = null)
+        public Connection(Direction direction, IRoom room, IDoor door = null)
         {
             Room = room;
             Direction = direction;
@@ -13,7 +13,6 @@ namespace CODE_GameLib
         }
 
         public IRoom Room { get; }
-        public IConnection Destination { get; set; }
         public Direction Direction { get; }
         public IDoor Door { get; }
     }
@@ -21,7 +20,6 @@ namespace CODE_GameLib
     public interface IConnection
     {
         public IRoom Room { get; }
-        public IConnection Destination { get; set; }
         public Direction Direction { get; }
         public IDoor Door { get; }
     }

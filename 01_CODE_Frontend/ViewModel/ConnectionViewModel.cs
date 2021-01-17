@@ -17,7 +17,7 @@ namespace CODE_Frontend.ViewModel
                 case Direction.North:
                 case Direction.South:
                     X = (room.Width + 1) / 2 - 1;
-                    Y = connection.Direction == Direction.South ? 0 : room.Height - 1;
+                    Y = connection.Direction == Direction.North ? 0 : room.Height - 1;
                     break;
                 case Direction.East:
                 case Direction.West:

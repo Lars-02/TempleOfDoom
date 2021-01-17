@@ -34,11 +34,8 @@ namespace CODE_PersistenceLib.Factories
             if (jConnection.ContainsKey("door"))
                 connectionDoor = DoorFactory.CreateDoor(jConnection["door"]);
 
-            conn1 = new Connection(rooms[roomId1], location1, connectionDoor);
-            conn2 = new Connection(rooms[roomId2], location2, connectionDoor);
-
-            conn1.Destination = conn2;
-            conn2.Destination = conn1;
+            conn1 = new Connection(location1, rooms[roomId1], connectionDoor);
+            conn2 = new Connection(location2, rooms[roomId2], connectionDoor);
         }
     }
 }

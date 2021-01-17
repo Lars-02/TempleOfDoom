@@ -35,22 +35,24 @@ namespace CODE_GameLib
             if (!IsCenterOfWall(targetX, targetY))
                 return null;
 
-            var destination = GetConnectionDestination(direction, entity);
-
-            return destination == null
-                ? null
-                : new Location(destination.Room, GetDestinationXy(destination).Item1,
-                    GetDestinationXy(destination).Item2);
+            var destination = GetDestinationRoom(direction, entity);
+            
+            if (destination == null)
+                return null;
+            
+            var (x, y) = GetDestinationXy(direction, destination);
+            
+            return new Location(destination, x, y);
         }
 
-        private IConnection GetConnectionDestination(Direction direction, IEntity entity)
+        private IRoom GetDestinationRoom(Direction direction, IEntity entity)
         {
             if (Connections.All(conn => conn.Direction != direction))
                 return null;
 
             var connection = Connections.FirstOrDefault(conn => conn.Direction == direction);
 
-            if (connection?.Door == null || connection.Door.PassThru(entity)) return connection?.Destination;
+            if (connection?.Door == null || connection.Door.PassThru(entity)) return connection?.Room;
 
             if (connection.Door is IClosingDoor && entity is IPlayer player &&
                 player.Cheats.Contains(Cheat.DoorPortal))
@@ -58,13 +60,13 @@ namespace CODE_GameLib
             return null;
         }
 
-        private static (int, int) GetDestinationXy(IConnection destination)
+        private static (int, int) GetDestinationXy(Direction origin, IRoom destination)
         {
-            if (destination.Direction == Direction.North || destination.Direction == Direction.South)
-                return ((destination.Room.Width + 1) / 2 - 1,
-                    destination.Direction == Direction.South ? 0 : destination.Room.Height - 1);
-            return (destination.Direction == Direction.West ? 0 : destination.Room.Width - 1,
-                (destination.Room.Height + 1) / 2 - 1);
+            if (origin == Direction.North || origin == Direction.South)
+                return ((destination.Width + 1) / 2 - 1,
+                    origin == Direction.South ? 0 : destination.Height - 1);
+            return (origin == Direction.East ? 0 : destination.Width - 1,
+                (destination.Height + 1) / 2 - 1);
         }
 
         private bool IsWall(int x, int y)

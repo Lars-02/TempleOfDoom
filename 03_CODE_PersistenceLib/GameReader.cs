@@ -56,18 +56,18 @@ namespace CODE_PersistenceLib
             {
                 if (jConnection.ContainsKey("portal"))
                 {
-                    PortalFactory.CreatePortal(jConnection, rooms, out var portal1, out var portelRoomId1,
-                        out var portal2, out var portelRoomId2);
-                    rooms.FirstOrDefault(room => room.Key == portelRoomId1).Value.Items.Add(portal1);
-                    rooms.FirstOrDefault(room => room.Key == portelRoomId2).Value.Items.Add(portal2);
+                    PortalFactory.CreatePortal(jConnection, rooms, out var portal1, out var portalRoomId1,
+                        out var portal2, out var portalRoomId2);
+                    rooms.FirstOrDefault(room => room.Key == portalRoomId1).Value.Items.Add(portal1);
+                    rooms.FirstOrDefault(room => room.Key == portalRoomId2).Value.Items.Add(portal2);
                     continue;
                 }
 
                 ConnectionFactory.CreateConnection(jConnection, rooms, out var conn1, out var conn2, out var roomId1,
                     out var roomId2);
 
-                connections[roomId1].Add(conn1);
-                connections[roomId2].Add(conn2);
+                connections[roomId1].Add(conn2);
+                connections[roomId2].Add(conn1);
             }
         }
     }

@@ -12,12 +12,6 @@ namespace CODE_GameLib.Entity
             Lives = lives;
         }
 
-        protected Entity(int lives, ILocation location, ILocation movedFromLast)
-        {
-            Lives = lives;
-            Location = location;
-        }
-
         private bool Teleported { get; set; }
         public ILocation Location { get; }
         public int Lives { get; private set; }
@@ -59,13 +53,13 @@ namespace CODE_GameLib.Entity
             switch (direction)
             {
                 case Direction.North:
-                    targetY++;
+                    targetY--;
                     break;
                 case Direction.East:
                     targetX++;
                     break;
                 case Direction.South:
-                    targetY--;
+                    targetY++;
                     break;
                 case Direction.West:
                     targetX--;

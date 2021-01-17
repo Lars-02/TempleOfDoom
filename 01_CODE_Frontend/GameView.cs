@@ -32,7 +32,7 @@ namespace CODE_Frontend
 
             var spacing = new ConsoleText(" ");
 
-            for (var row = grid.GetLength(1) - 1; row >= 0; row--)
+            for (var row = 0; row < grid.GetLength(1); row++)
             {
                 for (var col = 0; col < grid.GetLength(0); col++)
                 {
