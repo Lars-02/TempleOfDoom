@@ -6,7 +6,7 @@ using CODE_GameLib.RoomObjects.Wearable;
 
 namespace CODE_GameLib.Observers
 {
-    public class PlayerObserver : IObserver<IEntity>
+    public class PlayerObserver : IObserver<IPlayer>
     {
         private readonly IGame _game;
 
@@ -25,14 +25,17 @@ namespace CODE_GameLib.Observers
             throw new NotImplementedException();
         }
 
-        public void OnNext(IEntity entity)
+        /// <summary>
+        /// This method is called when the player is updated. Since a player is an entity there is only one check.
+        /// The if statement checks if the player collected 5 or more stone's,
+        /// or one more stone is collected while the cheat OneMoreStone is enabled.
+        /// If true the player wins.
+        /// </summary>
+        /// <param name="player"> The update player </param>
+        public void OnNext(IPlayer player)
         {
-            if (!(entity is IPlayer player))
-                return;
-            if (entity.Died)
-                _game.Destroy(false);
             if (player.Inventory.Count(wearable => wearable is ISankaraStone) >= 5 ||
-                player.Cheats.Contains(Cheat.OneMoreStone) && player.Inventory.Last() is ISankaraStone)
+                player.IsCheatEnabled(Cheat.OneMoreStone) && player.Inventory.LastOrDefault() is ISankaraStone)
                 _game.Destroy(true);
         }
     }

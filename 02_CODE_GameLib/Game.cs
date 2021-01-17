@@ -11,6 +11,7 @@ namespace CODE_GameLib
         {
             Player = player;
 
+            Player.Subscribe(new EntityObserver(this));
             Player.Subscribe(new PlayerObserver(this));
             Player.Location.Subscribe(new EntityLocationObserver(this, Player));
         }
@@ -30,12 +31,13 @@ namespace CODE_GameLib
             }
 
             if (tickData.MovePlayer != null)
+            {
                 Player.Move((Direction) tickData.MovePlayer);
+                return;
+            }
 
-            if (tickData.ToggleCheat != null && Player.Cheats.Contains(tickData.ToggleCheat.Value))
-                Player.Cheats.Remove(tickData.ToggleCheat.Value);
-            else if (tickData.ToggleCheat != null) Player.Cheats.Add(tickData.ToggleCheat.Value);
-
+            if (tickData.ToggleCheat != null)
+                Player.ToggleCheat(tickData.ToggleCheat.Value);
             Update();
         }
 

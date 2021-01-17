@@ -68,12 +68,12 @@ namespace CODE_Frontend.Modules
 
         private IEnumerable<ConsoleText> GetCheats()
         {
-            if (!_player.Cheats.Any())
+            if (!_player.EnabledCheats.Any())
                 yield break;
 
             yield return new ConsoleText("Cheats:", ConsoleColor.DarkRed);
 
-            foreach (var cheat in _player.Cheats.OrderBy(cheat => cheat.ToString()))
+            foreach (var cheat in _player.EnabledCheats.OrderBy(cheat => cheat.ToString()))
                 yield return new ConsoleText($" {cheat.ToString()}");
         }
     }

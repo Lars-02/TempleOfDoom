@@ -36,12 +36,12 @@ namespace CODE_GameLib
                 return null;
 
             var destination = GetDestinationRoom(direction, entity);
-            
+
             if (destination == null)
                 return null;
-            
+
             var (x, y) = GetDestinationXy(direction, destination);
-            
+
             return new Location(destination, x, y);
         }
 
@@ -54,8 +54,7 @@ namespace CODE_GameLib
 
             if (connection?.Door == null || connection.Door.PassThru(entity)) return connection?.Room;
 
-            if (connection.Door is IClosingDoor && entity is IPlayer player &&
-                player.Cheats.Contains(Cheat.DoorPortal))
+            if (connection.Door is IClosingDoor && entity is IPlayer player && player.IsCheatEnabled(Cheat.DoorPortal))
                 player.Teleport(player.StartLocation);
             return null;
         }
