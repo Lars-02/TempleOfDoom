@@ -36,7 +36,7 @@ namespace CODE_Frontend.ViewModel
                 _grid[item.X, item.Y] = item.View;
             
             // Set enemies
-            foreach (var enemy in _enemies.Where(enemy => enemy.Location.Room == _room).Select(enemy => new PlayerViewModel(enemy)))
+            foreach (var enemy in _enemies.Where(enemy => !enemy.Died && enemy.Location.Room == _room).Select(enemy => new PlayerViewModel(enemy)))
                 _grid[enemy.X, enemy.Y] = enemy.View;
 
             // Set player

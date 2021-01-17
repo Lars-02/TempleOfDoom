@@ -39,6 +39,19 @@ namespace CODE_GameLib
         {
             return Room.Items.FirstOrDefault(item => item.X == X && item.Y == Y);
         }
+        
+        /// <summary>
+        /// Returns if this enemy can be hit from the given location.
+        /// </summary>
+        /// <param name="location"> The location where the shot will come from </param>
+        /// <returns></returns>
+        public bool WithinShootingRange(ILocation location)
+        {
+            return X == location.X + 1 && Y == location.Y ||
+                   X == location.X - 1 && Y == location.Y ||
+                   X == location.X && Y == location.Y + 1 ||
+                   X == location.X && Y == location.Y - 1;
+        }
     }
 
     public interface ILocation : IBaseObservable<ILocation>
@@ -49,5 +62,6 @@ namespace CODE_GameLib
 
         public bool SetLocation(ILocation location);
         public IRoomObject GetItem();
+        public bool WithinShootingRange(ILocation location);
     }
 }

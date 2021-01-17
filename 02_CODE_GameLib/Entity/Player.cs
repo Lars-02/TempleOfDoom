@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using CODE_GameLib.Enums;
@@ -38,6 +39,12 @@ namespace CODE_GameLib.Entity
         {
             return EnabledCheats.Any(enabledCheat => enabledCheat == cheat);
         }
+
+        public void Shoot(IEnumerable<IEnemy> enemiesInRange)
+        {
+            foreach (var enemy in enemiesInRange)
+                enemy.ReceiveDamage(1);
+        }
     }
 
     public interface IPlayer : IEntity
@@ -48,5 +55,6 @@ namespace CODE_GameLib.Entity
         public void AddToInventory(IWearable wearable);
         public void ToggleCheat(Cheat cheat);
         public bool IsCheatEnabled(Cheat cheat);
+        public void Shoot(IEnumerable<IEnemy> enemiesInRange);
     }
 }

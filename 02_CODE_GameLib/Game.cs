@@ -42,12 +42,14 @@ namespace CODE_GameLib
             if (tickData.MovePlayer != null)
             {
                 if (!Player.Move((Direction) tickData.MovePlayer)) return;
-                foreach (var enemy in Enemies.Where(enemy => !enemy.Died && enemy.Location.Room == Player.Location.Room))
+                foreach (var enemy in Enemies.Where(enemy =>
+                    !enemy.Died && enemy.Location.Room == Player.Location.Room))
                     enemy.Move();
-                
-                Update();
-                return;
             }
+
+            if (tickData.Shoot)
+                Player.Shoot(Enemies.Where(enemy =>
+                    !enemy.Died && enemy.Location.WithinShootingRange(Player.Location)));
 
             if (tickData.ToggleCheat != null)
                 Player.ToggleCheat(tickData.ToggleCheat.Value);

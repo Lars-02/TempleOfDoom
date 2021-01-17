@@ -5,7 +5,7 @@ namespace CODE_GameLib.Entity
     public class EnemyLocationAdapter : Location
     {
         private readonly Enemy _adaptee;
-        
+
         public EnemyLocationAdapter(Enemy enemy, IRoom startingRoom)
         {
             _adaptee = enemy;
