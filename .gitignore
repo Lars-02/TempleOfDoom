@@ -404,3 +404,4 @@ MigrationBackup/
 FodyWeavers.xsd
 
 ./**/obj
+01_CODE_Frontend/ClassDiagram.cd
