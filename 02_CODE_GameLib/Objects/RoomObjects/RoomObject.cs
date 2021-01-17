@@ -2,12 +2,12 @@ using CODE_GameLib.Interfaces.RoomObjects;
 
 namespace CODE_GameLib.Objects.RoomObjects
 {
-    public class RoomRoomObject : IRoomObject
+    public class RoomObject : IRoomObject
     {
-        public RoomRoomObject(int y, int x)
+        protected RoomObject(int x, int y)
         {
-            Y = y;
             X = x;
+            Y = y;
         }
 
         public int X { get; }

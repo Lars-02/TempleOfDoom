@@ -6,16 +6,11 @@ using CODE_GameLib.Interfaces.RoomObjects;
 
 namespace CODE_GameLib.Objects.RoomObjects
 {
-    public class PressurePlate : IPressurePlate
+    public class PressurePlate : RoomObject, IPressurePlate
     {
-        public PressurePlate(int x, int y)
+        public PressurePlate(int x, int y) : base(x, y)
         {
-            X = x;
-            Y = y;
         }
-
-        public int X { get; }
-        public int Y { get; }
 
         public void ActivatePressurePlate(IEnumerable<IConnection> connections)
         {
