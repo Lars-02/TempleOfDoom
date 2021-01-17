@@ -10,6 +10,7 @@ namespace CODE_Frontend
         {
             var tickData = new TickData();
 
+            // ReSharper disable once SwitchStatementMissingSomeEnumCasesNoDefault
             switch (key)
             {
                 case ConsoleKey.UpArrow:

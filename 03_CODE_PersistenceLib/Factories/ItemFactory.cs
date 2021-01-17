@@ -4,6 +4,7 @@ using CODE_GameLib.RoomObjects.BoobyTraps;
 using CODE_GameLib.RoomObjects.Wearable;
 using Newtonsoft.Json.Linq;
 
+// ReSharper disable AssignNullToNotNullAttribute
 namespace CODE_PersistenceLib.Factories
 {
     public static class ItemFactory

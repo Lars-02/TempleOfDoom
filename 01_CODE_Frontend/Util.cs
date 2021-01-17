@@ -7,19 +7,14 @@ namespace CODE_Frontend
     {
         public static string ConvertDirectionConveyorBeltIcon(Direction direction)
         {
-            switch (direction)
+            return direction switch
             {
-                case Direction.North:
-                    return "▲";
-                case Direction.East:
-                    return "▶";
-                case Direction.South:
-                    return "▼";
-                case Direction.West:
-                    return "◀";
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(direction), direction, "This is an invalid direction");
-            }
+                Direction.North => "▲",
+                Direction.East => "▶",
+                Direction.South => "▼",
+                Direction.West => "◀",
+                _ => throw new ArgumentOutOfRangeException(nameof(direction), direction, "This is an invalid direction")
+            };
         }
     }
 }

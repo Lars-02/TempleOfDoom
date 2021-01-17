@@ -16,10 +16,13 @@ namespace CODE_GameLib.Entity
         public override int Lives => _adaptee.NumberOfLives;
         public override ILocation Location => _location;
 
-        public override void ReceiveDamage(int damage) => _adaptee.GetHurt(damage);
+        public override void ReceiveDamage(int damage)
+        {
+            _adaptee.GetHurt(damage);
+        }
 
         /// <summary>
-        /// Moves the enemy following it's route
+        ///     Moves the enemy following it's route
         /// </summary>
         public void Move()
         {

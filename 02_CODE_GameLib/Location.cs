@@ -1,5 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using CODE_GameLib.Entity;
 using CODE_GameLib.Observers;
@@ -9,6 +9,7 @@ namespace CODE_GameLib
 {
     public class Location : BaseObservable<ILocation>, ILocation
     {
+        [SuppressMessage("ReSharper", "VirtualMemberCallInConstructor")]
         public Location(IRoom room, int x, int y)
         {
             Room = room;
@@ -42,9 +43,9 @@ namespace CODE_GameLib
         {
             return Room.Items.FirstOrDefault(item => item.X == X && item.Y == Y);
         }
-        
+
         /// <summary>
-        /// Returns if this enemy can be hit from the given location.
+        ///     Returns if this enemy can be hit from the given location.
         /// </summary>
         /// <param name="location"> The location where the shot will come from </param>
         /// <returns></returns>

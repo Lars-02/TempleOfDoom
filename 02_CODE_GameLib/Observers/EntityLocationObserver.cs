@@ -28,16 +28,16 @@ namespace CODE_GameLib.Observers
         }
 
         /// <summary>
-        /// This will get updated when the location is updated.
-        /// When this happens the method will look for any RoomObjects or Entity's in it's place.
-        /// If it finds any it preforms an action for that item. 
+        ///     This will get updated when the location is updated.
+        ///     When this happens the method will look for any RoomObjects or Entity's in it's place.
+        ///     If it finds any it preforms an action for that item.
         /// </summary>
         /// <param name="location"> Updated location from an entity</param>
         public void OnNext(ILocation location)
         {
             // Get roomObject if there is one
             var roomObject = location.GetRoomObject();
-            
+
             // Get player
             var player = _entity as IPlayer;
 
@@ -70,11 +70,13 @@ namespace CODE_GameLib.Observers
                                 player.ReceiveDamage(1);
                                 return;
                             }
+
                             break;
-                        }
+                    }
+
                     break;
             }
-            
+
             if (roomObject is IWearable || roomObject is IDisappearingTrap)
                 location.Room.RemoveItem(roomObject);
         }

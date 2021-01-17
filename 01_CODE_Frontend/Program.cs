@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using CODE_PersistenceLib;
 
 namespace CODE_Frontend
@@ -12,9 +11,9 @@ namespace CODE_Frontend
         // All included levels
         private static readonly string[] GameFiles =
         {
-            "./Levels/TempleOfDoom.json", 
-            "./Levels/TempleOfDoom_Extended_B.json", 
-            "./Levels/TempleOfDoom_Test_Enemy_Conveyor_Belt.json", 
+            "./Levels/TempleOfDoom.json",
+            "./Levels/TempleOfDoom_Extended_B.json",
+            "./Levels/TempleOfDoom_Test_Enemy_Conveyor_Belt.json",
             "./Levels/TempleOfDoom_Test_Enemy_Conveyor_Belt.json"
         };
 

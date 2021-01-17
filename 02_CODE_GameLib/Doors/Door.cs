@@ -4,7 +4,7 @@ namespace CODE_GameLib.Doors
 {
     public class Door : IDoor
     {
-        public bool Opened { get; set; }
+        protected bool Opened { get; set; }
 
         public virtual bool PassThru(IEntity entity)
         {
@@ -14,7 +14,6 @@ namespace CODE_GameLib.Doors
 
     public interface IDoor
     {
-        public bool Opened { get; set; }
         public bool PassThru(IEntity entity);
     }
 }

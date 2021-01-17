@@ -22,9 +22,9 @@ namespace CODE_GameLib
         public List<IRoomObject> Items { get; }
         public IEnumerable<IConnection> Connections { get; }
 
-        public bool RemoveItem(IRoomObject roomObject)
+        public void RemoveItem(IRoomObject roomObject)
         {
-            return Items.Remove(roomObject);
+            Items.Remove(roomObject);
         }
 
         public ILocation GetDestination(int targetX, int targetY, Direction direction, IEntity entity)
@@ -43,6 +43,11 @@ namespace CODE_GameLib
             var (x, y) = GetCoordinates(direction, destination);
 
             return new Location(destination, x, y);
+        }
+
+        public bool IsWall(int x, int y)
+        {
+            return x < 1 || y < 1 || x > Width - 2 || y > Height - 2;
         }
 
         private IRoom GetDestinationRoom(Direction direction, IEntity entity)
@@ -68,11 +73,6 @@ namespace CODE_GameLib
                 (destination.Height + 1) / 2 - 1);
         }
 
-        public bool IsWall(int x, int y)
-        {
-            return x < 1 || y < 1 || x > Width - 2 || y > Height - 2;
-        }
-
         private bool IsCenterOfWall(int x, int y)
         {
             return IsWall(x, y) && (x == (Width + 1) / 2 - 1 || y == (Height + 1) / 2 - 1);
@@ -87,7 +87,7 @@ namespace CODE_GameLib
         public IEnumerable<IConnection> Connections { get; }
 
         public ILocation GetDestination(int targetX, int targetY, Direction direction, IEntity entity);
-        public bool RemoveItem(IRoomObject roomObject);
+        public void RemoveItem(IRoomObject roomObject);
         public bool IsWall(int x, int y);
     }
 }

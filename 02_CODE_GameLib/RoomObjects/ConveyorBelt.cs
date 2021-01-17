@@ -11,7 +11,7 @@ namespace CODE_GameLib.RoomObjects
         }
 
         public Direction Direction { get; }
-        
+
         public void UseConveyorBelt(IEntity entity)
         {
             entity.Push(Direction);
@@ -23,6 +23,4 @@ namespace CODE_GameLib.RoomObjects
         Direction Direction { get; }
         public void UseConveyorBelt(IEntity entity);
     }
-    
-    
 }

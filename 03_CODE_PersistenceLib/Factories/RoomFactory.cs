@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using CODE_GameLib;
 using CODE_GameLib.Entity;
 using CODE_GameLib.RoomObjects;
-using CODE_TempleOfDoom_DownloadableContent;
 using Newtonsoft.Json.Linq;
 
 namespace CODE_PersistenceLib.Factories
@@ -35,7 +33,7 @@ namespace CODE_PersistenceLib.Factories
                 throw new ArgumentException("Width must be even");
 
             var room = new Room(width, height, items, connections[roomId]);
-            
+
             enemies = GetEnemiesFromRoom(roomJObject, room);
 
             return room;
@@ -52,7 +50,7 @@ namespace CODE_PersistenceLib.Factories
 
             return items;
         }
-        
+
         private static IEnumerable<IEnemy> GetEnemiesFromRoom(JObject roomJObject, IRoom room)
         {
             var enemies = new List<IEnemy>();

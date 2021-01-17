@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -13,7 +12,7 @@ namespace CODE_PersistenceLib
     public static class GameReader
     {
         private static Dictionary<int, IRoom> _rooms;
-        private static List<IEnemy> _enemies ;
+        private static List<IEnemy> _enemies;
 
         public static IGame Read(string filePath)
         {
@@ -33,7 +32,6 @@ namespace CODE_PersistenceLib
                 var playerJToken = json["player"];
                 var playerStartLocation = EntityLocationFactory.CreateEntityLocation(_rooms, playerJToken);
                 player = PlayerFactory.CreatePlayer(playerJToken, playerStartLocation);
-                
             }
             catch (Exception e)
             {

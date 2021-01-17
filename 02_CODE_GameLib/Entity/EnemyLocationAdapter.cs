@@ -30,7 +30,7 @@ namespace CODE_GameLib.Entity
         {
             NotifyObservers(this);
         }
-        
+
         public override bool SetLocation(ILocation location)
         {
             if (location.Room.IsWall(location.X, location.Y))

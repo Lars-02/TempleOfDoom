@@ -32,7 +32,7 @@ namespace CODE_GameLib
         public List<IEnemy> Enemies { get; }
 
         /// <summary>
-        /// Is one game tick. So one action the player makes.
+        ///     Is one game tick. So one action the player makes.
         /// </summary>
         /// <param name="tickData"> The action the player took this tick. </param>
         public void Tick(TickData tickData)
@@ -49,12 +49,12 @@ namespace CODE_GameLib
             {
                 // Move player
                 if (!Player.Move((Direction) tickData.MovePlayer)) return;
-                
+
                 // Move enemies
                 foreach (var enemy in Enemies.Where(enemy =>
                     !enemy.Died && enemy.Location.Room == Player.Location.Room))
                     enemy.Move();
-                
+
                 // Check if player is on an enemy
                 if (Player.Location.IsEnemy(Enemies))
                     Player.ReceiveDamage(1);
@@ -77,7 +77,7 @@ namespace CODE_GameLib
         }
 
 
-        public void Update()
+        private void Update()
         {
             Updated?.Invoke(this, this);
         }
@@ -90,7 +90,6 @@ namespace CODE_GameLib
         public IPlayer Player { get; }
         public List<IEnemy> Enemies { get; }
         public event EventHandler<Game> Updated;
-        public void Update();
         public void Tick(TickData tickData);
         public void Destroy(bool winGame);
     }

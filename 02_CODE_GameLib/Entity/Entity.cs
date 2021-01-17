@@ -6,14 +6,15 @@ namespace CODE_GameLib.Entity
 {
     public class Entity : BaseObservable<IEntity>, IEntity
     {
+        private bool _pushed;
+
+        private bool _teleported;
+
         protected Entity(int lives, ILocation location)
         {
             Location = location;
             Lives = lives;
         }
-
-        private bool _teleported;
-        private bool _pushed;
 
         protected Entity()
         {
@@ -32,13 +33,12 @@ namespace CODE_GameLib.Entity
             return destination != null && Location.SetLocation(destination);
         }
 
-        public bool Teleport(ILocation teleportTo)
+        public void Teleport(ILocation teleportTo)
         {
-            if (_teleported) return false;
+            if (_teleported) return;
             _teleported = true;
             Location.SetLocation(teleportTo);
             _teleported = false;
-            return true;
         }
 
         public void Push(Direction direction)
@@ -89,7 +89,7 @@ namespace CODE_GameLib.Entity
         public ILocation Location { get; }
         public int Lives { get; }
         public bool Died { get; }
-        public bool Teleport(ILocation teleportTo);
+        public void Teleport(ILocation teleportTo);
         public void Push(Direction direction);
         public bool Move(Direction direction);
         public void ReceiveDamage(int damage);

@@ -9,18 +9,16 @@ namespace CODE_GameLib.RoomObjects
             Destination = destination;
         }
 
-        public ILocation Destination { get; }
+        private ILocation Destination { get; }
 
-        public bool UsePortal(IEntity entity)
+        public void UsePortal(IEntity entity)
         {
-            return entity.Teleport(Destination);
+            entity.Teleport(Destination);
         }
     }
 
     public interface IPortal : IRoomObject
     {
-        ILocation Destination { get; }
-
-        public bool UsePortal(IEntity entity);
+        public void UsePortal(IEntity entity);
     }
 }
