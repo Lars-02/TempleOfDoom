@@ -1,4 +1,4 @@
-namespace CODE_GameLib.Objects.Doors
+namespace CODE_GameLib.Doors
 {
     public class ToggleDoor : Door, IToggleDoor
     {

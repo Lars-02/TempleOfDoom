@@ -1,7 +1,7 @@
-﻿using CODE_GameLib.Enums;
-using CODE_GameLib.Objects.Doors;
+﻿using CODE_GameLib.Doors;
+using CODE_GameLib.Enums;
 
-namespace CODE_GameLib.Objects
+namespace CODE_GameLib
 {
     public class Connection : IConnection
     {

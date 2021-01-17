@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
-using CODE_GameLib.Objects.Doors;
+using CODE_GameLib.Doors;
 
-namespace CODE_GameLib.Objects.RoomObjects
+namespace CODE_GameLib.RoomObjects
 {
     public class PressurePlate : RoomObject, IPressurePlate
     {

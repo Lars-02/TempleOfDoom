@@ -1,5 +1,5 @@
 ﻿using System;
-using CODE_GameLib.Objects.Doors;
+using CODE_GameLib.Doors;
 using Newtonsoft.Json.Linq;
 
 namespace CODE_PersistenceLib.Factories

@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using CODE_GameLib.Enums;
-using CODE_GameLib.Objects.RoomObjects.Wearable;
+using CODE_GameLib.RoomObjects.Wearable;
 
-namespace CODE_GameLib.Objects.Entity
+namespace CODE_GameLib.Entity
 {
     public class Player : Entity, IPlayer
     {

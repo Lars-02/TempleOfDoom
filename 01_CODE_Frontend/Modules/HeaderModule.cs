@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using CODE_Frontend.ViewModel;
-using CODE_GameLib.Objects;
-using CODE_GameLib.Objects.Entity;
-using CODE_GameLib.Objects.RoomObjects.Wearable;
+using CODE_GameLib;
+using CODE_GameLib.Entity;
+using CODE_GameLib.RoomObjects.Wearable;
 
 namespace CODE_Frontend.Modules
 {

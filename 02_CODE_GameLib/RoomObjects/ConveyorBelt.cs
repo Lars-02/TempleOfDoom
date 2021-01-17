@@ -1,6 +1,6 @@
 using CODE_GameLib.Enums;
 
-namespace CODE_GameLib.Objects.RoomObjects
+namespace CODE_GameLib.RoomObjects
 {
     public class ConveyorBelt : RoomObject, IConveyorBelt
     {

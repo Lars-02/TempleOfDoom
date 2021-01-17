@@ -1,5 +1,5 @@
-﻿using CODE_GameLib.Objects;
-using CODE_GameLib.Objects.Entity;
+﻿using CODE_GameLib;
+using CODE_GameLib.Entity;
 using Newtonsoft.Json.Linq;
 
 namespace CODE_PersistenceLib.Factories

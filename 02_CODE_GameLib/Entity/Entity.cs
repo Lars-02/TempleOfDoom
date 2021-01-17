@@ -1,8 +1,8 @@
 using System;
 using CODE_GameLib.Enums;
-using CODE_GameLib.Objects.Observers;
+using CODE_GameLib.Observers;
 
-namespace CODE_GameLib.Objects.Entity
+namespace CODE_GameLib.Entity
 {
     public class Entity : BaseObservable<IEntity>, IEntity
     {

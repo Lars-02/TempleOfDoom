@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
-using CODE_GameLib.Objects;
-using CODE_GameLib.Objects.RoomObjects;
+using CODE_GameLib;
+using CODE_GameLib.RoomObjects;
 using Newtonsoft.Json.Linq;
 
 namespace CODE_PersistenceLib.Factories

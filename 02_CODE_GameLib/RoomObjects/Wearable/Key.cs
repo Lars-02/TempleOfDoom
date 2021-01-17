@@ -1,6 +1,6 @@
 using System;
 
-namespace CODE_GameLib.Objects.RoomObjects.Wearable
+namespace CODE_GameLib.RoomObjects.Wearable
 {
     public class Key : RoomObject, IKey
     {

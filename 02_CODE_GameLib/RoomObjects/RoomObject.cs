@@ -1,4 +1,4 @@
-namespace CODE_GameLib.Objects.RoomObjects
+namespace CODE_GameLib.RoomObjects
 {
     public class RoomObject : IRoomObject
     {

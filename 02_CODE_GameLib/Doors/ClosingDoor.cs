@@ -1,6 +1,6 @@
-using CODE_GameLib.Objects.Entity;
+using CODE_GameLib.Entity;
 
-namespace CODE_GameLib.Objects.Doors
+namespace CODE_GameLib.Doors
 {
     public class ClosingDoor : Door, IClosingDoor
     {

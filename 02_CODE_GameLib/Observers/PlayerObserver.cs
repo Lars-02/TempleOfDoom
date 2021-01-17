@@ -1,10 +1,10 @@
 using System;
 using System.Linq;
+using CODE_GameLib.Entity;
 using CODE_GameLib.Enums;
-using CODE_GameLib.Objects.Entity;
-using CODE_GameLib.Objects.RoomObjects.Wearable;
+using CODE_GameLib.RoomObjects.Wearable;
 
-namespace CODE_GameLib.Objects.Observers
+namespace CODE_GameLib.Observers
 {
     public class PlayerObserver : IObserver<IEntity>
     {

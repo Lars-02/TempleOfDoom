@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
-using CODE_GameLib.Objects;
-using CODE_GameLib.Objects.Entity;
+using CODE_GameLib;
+using CODE_GameLib.Entity;
 
 namespace CODE_Frontend.ViewModel
 {

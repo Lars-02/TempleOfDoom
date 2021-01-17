@@ -1,11 +1,11 @@
 using System.Collections.Generic;
 using System.Linq;
+using CODE_GameLib.Doors;
+using CODE_GameLib.Entity;
 using CODE_GameLib.Enums;
-using CODE_GameLib.Objects.Doors;
-using CODE_GameLib.Objects.Entity;
-using CODE_GameLib.Objects.RoomObjects;
+using CODE_GameLib.RoomObjects;
 
-namespace CODE_GameLib.Objects
+namespace CODE_GameLib
 {
     public class Room : IRoom
     {

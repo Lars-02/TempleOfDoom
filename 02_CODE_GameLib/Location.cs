@@ -1,8 +1,8 @@
 using System.Linq;
-using CODE_GameLib.Objects.Observers;
-using CODE_GameLib.Objects.RoomObjects;
+using CODE_GameLib.Observers;
+using CODE_GameLib.RoomObjects;
 
-namespace CODE_GameLib.Objects
+namespace CODE_GameLib
 {
     public class Location : BaseObservable<ILocation>, ILocation
     {

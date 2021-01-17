@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using CODE_GameLib.Objects;
+using CODE_GameLib;
 using Newtonsoft.Json.Linq;
 
 namespace CODE_PersistenceLib.Factories

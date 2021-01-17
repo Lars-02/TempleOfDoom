@@ -1,4 +1,4 @@
-namespace CODE_GameLib.Objects.RoomObjects.Wearable
+namespace CODE_GameLib.RoomObjects.Wearable
 {
     public class SankaraStone : RoomObject, ISankaraStone
     {

@@ -1,9 +1,9 @@
 ﻿using System;
+using CODE_GameLib.Entity;
 using CODE_GameLib.Enums;
-using CODE_GameLib.Objects.Entity;
-using CODE_GameLib.Objects.Observers;
+using CODE_GameLib.Observers;
 
-namespace CODE_GameLib.Objects
+namespace CODE_GameLib
 {
     public class Game : IGame
     {

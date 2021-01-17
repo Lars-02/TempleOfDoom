@@ -1,4 +1,4 @@
-namespace CODE_GameLib.Objects.RoomObjects.BoobyTraps
+namespace CODE_GameLib.RoomObjects.BoobyTraps
 {
     public class DisappearingTrap : BoobyTrap, IDisappearingTrap
     {
