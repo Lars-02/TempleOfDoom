@@ -1,5 +1,5 @@
-﻿using CODE_PersistenceLib;
-using System;
+﻿using System;
+using CODE_PersistenceLib;
 
 namespace CODE_Frontend
 {
@@ -8,7 +8,7 @@ namespace CODE_Frontend
         private static void Main()
         {
             while (true)
-            { 
+            {
                 // TODO this is the old game file...
                 //var game = GameReader.Read(@"./Levels/TempleOfDoom.json");
                 var game = GameReader.Read(@"./Levels/TempleOfDoom_Extended_B.json");

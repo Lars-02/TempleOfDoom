@@ -1,17 +1,17 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using CODE_GameLib;
 using CODE_GameLib.Enums;
-using CODE_GameLib.Factories;
 using CODE_GameLib.Interfaces;
 using CODE_GameLib.Interfaces.Doors;
+using CODE_GameLib.Objects;
 using Newtonsoft.Json.Linq;
 
 namespace CODE_PersistenceLib.Factories
 {
     public static class ConnectionFactory
     {
-        public static void CreateConnection(JObject jConnection, IReadOnlyDictionary<int, IRoom> rooms, out IConnection conn1, out IConnection conn2, out int roomId1, out int roomId2)
+        public static void CreateConnection(JObject jConnection, IReadOnlyDictionary<int, IRoom> rooms,
+            out IConnection conn1, out IConnection conn2, out int roomId1, out int roomId2)
         {
             var convertLocation = new Dictionary<string, Direction>
             {

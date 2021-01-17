@@ -1,5 +1,4 @@
 ﻿using System;
-using CODE_GameLib;
 using CODE_GameLib.Enums;
 using CODE_GameLib.Interfaces;
 
@@ -9,10 +8,6 @@ namespace CODE_Frontend.ViewModel
     {
         private readonly IConnection _connection;
 
-        public int X { get; }
-        public int Y { get; }
-        public ConsoleText View => new DoorViewModel(_connection.Door, _connection.Direction).View;
-        
         public ConnectionViewModel(IConnection connection, IRoom room)
         {
             _connection = connection;
@@ -33,7 +28,9 @@ namespace CODE_Frontend.ViewModel
                     throw new ArgumentOutOfRangeException();
             }
         }
-        
-        
+
+        public int X { get; }
+        public int Y { get; }
+        public ConsoleText View => new DoorViewModel(_connection.Door, _connection.Direction).View;
     }
 }

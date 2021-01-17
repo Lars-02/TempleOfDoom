@@ -1,8 +1,8 @@
-﻿using CODE_Frontend.Modules;
-using CODE_GameLib.Interfaces;
-using System;
+﻿using System;
 using System.Text;
+using CODE_Frontend.Modules;
 using CODE_Frontend.ViewModel;
+using CODE_GameLib.Interfaces;
 
 namespace CODE_Frontend
 {
@@ -22,14 +22,14 @@ namespace CODE_Frontend
         {
             Console.Clear();
             Console.SetCursorPosition(0, 1);
-            
+
             foreach (var line in _headerModule.Render(game))
                 Print(line);
-            
+
             Console.WriteLine();
 
             var grid = new RoomViewModel(game.Player.Location.Room, game.Player).GetGrid();
-           
+
             var spacing = new ConsoleText(" ");
 
             for (var row = grid.GetLength(1) - 1; row >= 0; row--)
@@ -42,6 +42,7 @@ namespace CODE_Frontend
 
                 Console.WriteLine();
             }
+
             Console.WriteLine();
 
             if (game.Player.Died)

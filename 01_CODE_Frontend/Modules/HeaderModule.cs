@@ -1,10 +1,10 @@
-﻿using CODE_GameLib.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using CODE_Frontend.ViewModel;
+using CODE_GameLib.Interfaces;
 using CODE_GameLib.Interfaces.Entity;
-using CODE_GameLib.Interfaces.Items.Wearable;
+using CODE_GameLib.Interfaces.RoomObjects.Wearable;
 
 namespace CODE_Frontend.Modules
 {
@@ -62,7 +62,7 @@ namespace CODE_Frontend.Modules
                 yield return new ConsoleText(" ");
                 yield return new ItemViewModel(item).View;
             }
-            
+
             yield return new ConsoleText(Environment.NewLine);
         }
 

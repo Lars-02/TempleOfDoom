@@ -7,9 +7,9 @@ namespace CODE_Frontend.ViewModel
 {
     public class RoomViewModel
     {
-        private readonly IRoom _room;
-        private readonly IPlayer _player;
         private readonly ConsoleText[,] _grid;
+        private readonly IPlayer _player;
+        private readonly IRoom _room;
 
         public RoomViewModel(IRoom room, IPlayer player)
         {
@@ -21,11 +21,12 @@ namespace CODE_Frontend.ViewModel
         public ConsoleText[,] GetGrid()
         {
             InitializeGrid();
-            
+
             // Set connections
-            foreach (var connection in _room.Connections.Select(connection => new ConnectionViewModel(connection, _room)))
+            foreach (var connection in _room.Connections.Select(
+                connection => new ConnectionViewModel(connection, _room)))
                 _grid[connection.X, connection.Y] = connection.View;
-            
+
             // Set items
             foreach (var item in _room.Items.Select(item => new ItemViewModel(item)))
                 _grid[item.X, item.Y] = item.View;
@@ -55,6 +56,5 @@ namespace CODE_Frontend.ViewModel
                     _grid[col, row] = consoleText;
             }
         }
-
     }
 }

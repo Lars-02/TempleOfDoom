@@ -9,7 +9,7 @@ namespace CODE_PersistenceLib
         {
             try
             {
-                return (ConsoleColor)Enum.Parse(typeof(ConsoleColor), color, true);
+                return (ConsoleColor) Enum.Parse(typeof(ConsoleColor), color, true);
             }
             catch (IndexOutOfRangeException e)
             {

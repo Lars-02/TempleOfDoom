@@ -1,12 +1,12 @@
-﻿using CODE_GameLib.Interfaces;
-using CODE_GameLib.Interfaces.Items;
-using Newtonsoft.Json.Linq;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using CODE_PersistenceLib.Factories;
+using CODE_GameLib.Interfaces;
+using CODE_GameLib.Interfaces.RoomObjects;
+using CODE_GameLib.Objects;
+using Newtonsoft.Json.Linq;
 
-namespace CODE_GameLib.Factories
+namespace CODE_PersistenceLib.Factories
 {
     public static class RoomFactory
     {
@@ -35,9 +35,9 @@ namespace CODE_GameLib.Factories
             return new Room(width, height, items, connections[roomId]);
         }
 
-        private static List<IItem> GetItemsForRoom(JObject roomJObject)
+        private static List<IRoomObject> GetItemsForRoom(JObject roomJObject)
         {
-            var items = new List<IItem>();
+            var items = new List<IRoomObject>();
 
             if (roomJObject.ContainsKey("items"))
                 items.AddRange(roomJObject["items"].Select(ItemFactory.CreateItem));
