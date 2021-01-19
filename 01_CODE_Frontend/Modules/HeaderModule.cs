@@ -4,6 +4,7 @@ using System.Linq;
 using CODE_Frontend.ViewModel;
 using CODE_GameLib;
 using CODE_GameLib.Entity;
+using CODE_GameLib.RoomObjects;
 using CODE_GameLib.RoomObjects.Wearable;
 
 namespace CODE_Frontend.Modules
@@ -57,10 +58,10 @@ namespace CODE_Frontend.Modules
 
             yield return new ConsoleText("Inventory:");
 
-            foreach (var item in _player.Inventory.Where(item => !(item is ISankaraStone)))
+            foreach (var wearable in _player.Inventory.Where(wearable => !(wearable is ISankaraStone)))
             {
                 yield return new ConsoleText(" ");
-                yield return new ItemViewModel(item).View;
+                yield return new ItemViewModel((RoomObject) wearable).View;
             }
 
             yield return new ConsoleText(Environment.NewLine);

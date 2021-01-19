@@ -41,7 +41,7 @@ namespace CODE_GameLib
 
         public virtual IRoomObject GetRoomObject()
         {
-            return Room.Items.FirstOrDefault(item => item.X == X && item.Y == Y);
+            return Room.RoomObjects.FirstOrDefault(roomObject => roomObject.X == X && roomObject.Y == Y);
         }
 
         /// <summary>

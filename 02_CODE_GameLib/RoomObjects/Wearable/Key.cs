@@ -2,9 +2,9 @@ using System;
 
 namespace CODE_GameLib.RoomObjects.Wearable
 {
-    public class Key : RoomObject, IKey
+    public class Key : Wearable, IKey
     {
-        public Key(int x, int y, ConsoleColor color) : base(x, y)
+        public Key(ILocation location, ConsoleColor color) : base(new RoomObject(location.X, location.Y), location.Room)
         {
             Color = color;
         }
@@ -12,7 +12,7 @@ namespace CODE_GameLib.RoomObjects.Wearable
         public ConsoleColor Color { get; }
     }
 
-    public interface IKey : IWearable
+    public interface IKey
     {
         public ConsoleColor Color { get; }
     }

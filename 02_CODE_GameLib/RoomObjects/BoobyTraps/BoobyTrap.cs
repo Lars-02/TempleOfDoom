@@ -1,17 +1,21 @@
+using CODE_GameLib.RoomObjects.Decorators;
+
 namespace CODE_GameLib.RoomObjects.BoobyTraps
 {
-    public class BoobyTrap : RoomObject, IBoobyTrap
+    public class BoobyTrap : BaseRoomObjectDecorator, IBoobyTrap
     {
-        public BoobyTrap(int x, int y, int damage) : base(x, y)
+        public BoobyTrap(int x, int y, int damage) : base(
+            new DamageEntityObjectDecorator(new RoomObject(x, y), damage))
         {
-            Damage = damage;
         }
 
-        public int Damage { get; }
+        protected BoobyTrap(IRoomObject decorator, int damage) : base(
+            new DamageEntityObjectDecorator(decorator, damage))
+        {
+        }
     }
 
-    public interface IBoobyTrap : IRoomObject
+    public interface IBoobyTrap
     {
-        public int Damage { get; }
     }
 }

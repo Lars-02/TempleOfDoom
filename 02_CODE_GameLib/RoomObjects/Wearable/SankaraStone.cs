@@ -1,13 +1,13 @@
 namespace CODE_GameLib.RoomObjects.Wearable
 {
-    public class SankaraStone : RoomObject, ISankaraStone
+    public class SankaraStone : Wearable, ISankaraStone
     {
-        public SankaraStone(int x, int y) : base(x, y)
+        public SankaraStone(ILocation location) : base(new RoomObject(location.X, location.Y), location.Room)
         {
         }
     }
 
-    public interface ISankaraStone : IWearable
+    public interface ISankaraStone
     {
     }
 }

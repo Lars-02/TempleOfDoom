@@ -38,7 +38,7 @@ namespace CODE_Frontend
                     break;
 
                 // These cheats are disabled because these are part of assigment A an not B
-                
+
                 // case ConsoleKey.L:
                 //     tickData.ToggleCheat = Cheat.Invincible;
                 //     break;

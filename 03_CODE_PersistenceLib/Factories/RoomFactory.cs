@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using CODE_GameLib;
 using CODE_GameLib.Entity;
-using CODE_GameLib.RoomObjects;
 using Newtonsoft.Json.Linq;
 
 namespace CODE_PersistenceLib.Factories
@@ -16,8 +15,6 @@ namespace CODE_PersistenceLib.Factories
             roomId = roomJObject["id"].Value<int>();
 
             connections.Add(roomId, new List<IConnection>());
-
-            var items = GetItemsForRoom(roomJObject);
 
             var width = roomJObject["width"].Value<int>();
             var height = roomJObject["height"].Value<int>();
@@ -32,23 +29,24 @@ namespace CODE_PersistenceLib.Factories
             if (width % 2 == 0)
                 throw new ArgumentException("Width must be even");
 
-            var room = new Room(width, height, items, connections[roomId]);
+            var room = new Room(width, height, connections[roomId]);
+
+            SetRoomObjects(roomJObject, room);
 
             enemies = GetEnemiesFromRoom(roomJObject, room);
 
             return room;
         }
 
-        private static List<IRoomObject> GetItemsForRoom(JObject roomJObject)
+        private static void SetRoomObjects(JObject roomJObject, IRoom room)
         {
-            var items = new List<IRoomObject>();
+            if (roomJObject["items"] != null)
+                room.AddRoomObjects(roomJObject["items"]
+                    .Select(roomObjectJObject => ItemFactory.CreateItem(roomObjectJObject, room)));
 
-            if (roomJObject.ContainsKey("items"))
-                items.AddRange(roomJObject["items"].Select(ItemFactory.CreateItem));
-            if (roomJObject.ContainsKey("specialFloorTiles"))
-                items.AddRange(roomJObject["specialFloorTiles"].Select(ItemFactory.CreateItem));
-
-            return items;
+            if (roomJObject["specialFloorTiles"] == null) return;
+            room.AddRoomObjects(roomJObject["specialFloorTiles"]
+                .Select(roomObjectJObject => ItemFactory.CreateItem(roomObjectJObject, room)));
         }
 
         private static IEnumerable<IEnemy> GetEnemiesFromRoom(JObject roomJObject, IRoom room)

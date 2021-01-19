@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using CODE_GameLib;
 using CODE_GameLib.Entity;
 using CODE_PersistenceLib.Factories;
@@ -59,10 +58,7 @@ namespace CODE_PersistenceLib
             {
                 if (jConnection.ContainsKey("portal"))
                 {
-                    PortalFactory.CreatePortal(jConnection, _rooms, out var portal1, out var portalRoomId1,
-                        out var portal2, out var portalRoomId2);
-                    _rooms.FirstOrDefault(room => room.Key == portalRoomId1).Value.Items.Add(portal1);
-                    _rooms.FirstOrDefault(room => room.Key == portalRoomId2).Value.Items.Add(portal2);
+                    PortalFactory.CreatePortal(jConnection, _rooms);
                     continue;
                 }
 

@@ -1,8 +1,5 @@
 using System;
 using CODE_GameLib.Entity;
-using CODE_GameLib.RoomObjects;
-using CODE_GameLib.RoomObjects.BoobyTraps;
-using CODE_GameLib.RoomObjects.Wearable;
 
 namespace CODE_GameLib.Observers
 {
@@ -35,50 +32,16 @@ namespace CODE_GameLib.Observers
         /// <param name="location"> Updated location from an entity</param>
         public void OnNext(ILocation location)
         {
+            if (_entity is IPlayer player && location.IsEnemy(_game.Enemies))
+                player.ReceiveDamage(1);
+
             // Get roomObject if there is one
             var roomObject = location.GetRoomObject();
 
-            // Get player
-            var player = _entity as IPlayer;
+            if (roomObject == null)
+                return;
 
-            switch (roomObject)
-            {
-                case IBoobyTrap boobyTrap:
-                    _entity.ReceiveDamage(boobyTrap.Damage);
-                    break;
-                case IConveyorBelt conveyorBelt:
-                    conveyorBelt.UseConveyorBelt(_entity);
-                    break;
-                case IPortal portal:
-                    portal.UsePortal(_entity);
-                    break;
-                default:
-                    // Check if there is a player
-                    if (player == null)
-                        break;
-                    switch (roomObject)
-                    {
-                        case IWearable wearable:
-                            player.AddToInventory(wearable);
-                            break;
-                        case IPressurePlate pressurePlate:
-                            pressurePlate.ActivatePressurePlate(location.Room.Connections);
-                            break;
-                        default:
-                            if (location.IsEnemy(_game.Enemies))
-                            {
-                                player.ReceiveDamage(1);
-                                return;
-                            }
-
-                            break;
-                    }
-
-                    break;
-            }
-
-            if (roomObject is IWearable || roomObject is IDisappearingTrap)
-                location.Room.RemoveItem(roomObject);
+            roomObject.Interact(_entity);
         }
     }
 }

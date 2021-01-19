@@ -31,7 +31,7 @@ namespace CODE_Frontend.ViewModel
                 _grid[connection.X, connection.Y] = connection.View;
 
             // Set items
-            foreach (var item in _room.Items.Select(item => new ItemViewModel(item)))
+            foreach (var item in _room.RoomObjects.Select(roomObject => new ItemViewModel(roomObject)))
                 _grid[item.X, item.Y] = item.View;
 
             // Set enemies

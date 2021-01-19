@@ -1,24 +1,16 @@
-using CODE_GameLib.Entity;
+using CODE_GameLib.RoomObjects.Decorators;
 
 namespace CODE_GameLib.RoomObjects
 {
-    public class Portal : RoomObject, IPortal
+    public class Portal : BaseRoomObjectDecorator, IPortal
     {
-        public Portal(int x, int y, ILocation destination) : base(x, y)
+        public Portal(int x, int y, ILocation destination) : base(
+            new TeleportEntityObjectDecorator(new RoomObject(x, y), destination))
         {
-            Destination = destination;
-        }
-
-        private ILocation Destination { get; }
-
-        public void UsePortal(IEntity entity)
-        {
-            entity.Teleport(Destination);
         }
     }
 
-    public interface IPortal : IRoomObject
+    public interface IPortal
     {
-        public void UsePortal(IEntity entity);
     }
 }

@@ -44,8 +44,14 @@ namespace CODE_GameLib.Entity
         public void Push(Direction direction)
         {
             if (_pushed)
+            {
                 _pushed = false;
-            _pushed = Move(direction);
+                return;
+            }
+
+            _pushed = true;
+            Move(direction);
+            _pushed = false;
         }
 
         public virtual void ReceiveDamage(int damage)

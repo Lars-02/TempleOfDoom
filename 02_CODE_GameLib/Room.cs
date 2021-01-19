@@ -9,22 +9,31 @@ namespace CODE_GameLib
 {
     public class Room : IRoom
     {
-        public Room(int width, int height, List<IRoomObject> items, IEnumerable<IConnection> connections)
+        public Room(int width, int height, IEnumerable<IConnection> connections)
         {
             Width = width;
             Height = height;
-            Items = items;
             Connections = connections;
         }
 
         public int Width { get; }
         public int Height { get; }
-        public List<IRoomObject> Items { get; }
+        public List<IRoomObject> RoomObjects { get; } = new List<IRoomObject>();
         public IEnumerable<IConnection> Connections { get; }
 
-        public void RemoveItem(IRoomObject roomObject)
+        public void AddRoomObjects(IEnumerable<IRoomObject> roomObjects)
         {
-            Items.Remove(roomObject);
+            RoomObjects.AddRange(roomObjects);
+        }
+
+        public void AddRoomObject(IRoomObject roomObject)
+        {
+            RoomObjects.Add(roomObject);
+        }
+
+        public void RemoveRoomObject(IRoomObject roomObject)
+        {
+            RoomObjects.Remove(roomObject);
         }
 
         public ILocation GetDestination(int targetX, int targetY, Direction direction, IEntity entity)
@@ -83,11 +92,13 @@ namespace CODE_GameLib
     {
         public int Width { get; }
         public int Height { get; }
-        public List<IRoomObject> Items { get; }
+        public List<IRoomObject> RoomObjects { get; }
         public IEnumerable<IConnection> Connections { get; }
 
+        public void AddRoomObjects(IEnumerable<IRoomObject> roomObjects);
+        public void AddRoomObject(IRoomObject roomObject);
         public ILocation GetDestination(int targetX, int targetY, Direction direction, IEntity entity);
-        public void RemoveItem(IRoomObject roomObject);
+        public void RemoveRoomObject(IRoomObject roomObject);
         public bool IsWall(int x, int y);
     }
 }
