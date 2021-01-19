@@ -14,7 +14,7 @@ namespace CODE_GameLib.RoomObjects
         public Direction Direction { get; }
     }
 
-    public interface IConveyorBelt : IRoomObject
+    public interface IConveyorBelt
     {
         Direction Direction { get; }
     }
