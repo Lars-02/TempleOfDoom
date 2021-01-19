@@ -38,10 +38,7 @@ namespace CODE_GameLib.Observers
             // Get roomObject if there is one
             var roomObject = location.GetRoomObject();
 
-            if (roomObject == null)
-                return;
-
-            roomObject.Interact(_entity);
+            roomObject?.Interact(_entity);
         }
     }
 }
