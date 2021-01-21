@@ -1,26 +1,31 @@
-using CODE_GameLib.Interfaces;
-using CODE_GameLib.Interfaces.Items.Wearable;
-using System.Drawing;
+using System;
 using System.Linq;
-using CODE_GameLib.Interfaces.Doors;
+using CODE_GameLib.Entity;
+using CODE_GameLib.RoomObjects.Wearable;
 
 namespace CODE_GameLib.Doors
 {
-    public class ColoredDoor : IColoredDoor
+    public class ColoredDoor : Door, IColoredDoor
     {
-        public bool Opened { get; set; }
-        public Color Color { get; }
-
-        public ColoredDoor(Color color)
+        public ColoredDoor(ConsoleColor color)
         {
             Color = color;
         }
 
-        public bool PassThru(IPlayer player)
+        public ConsoleColor Color { get; }
+
+        public override bool PassThru(IEntity entity)
         {
-            if (player.Inventory.Where(item => item is IKey).Any(key => ((IKey)key).Color == Color))
+            if (!(entity is IPlayer player))
+                return false;
+            if (player.Inventory.Where(item => item is IKey).Any(key => ((IKey) key).Color == Color))
                 Opened = true;
             return Opened;
         }
+    }
+
+    public interface IColoredDoor : IDoor
+    {
+        public ConsoleColor Color { get; }
     }
 }

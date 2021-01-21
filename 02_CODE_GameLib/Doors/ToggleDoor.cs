@@ -1,15 +1,15 @@
-using CODE_GameLib.Interfaces;
-using CODE_GameLib.Interfaces.Doors;
-
 namespace CODE_GameLib.Doors
 {
-    public class ToggleDoor : IToggleDoor
+    public class ToggleDoor : Door, IToggleDoor
     {
-        public bool Opened { get; set; }
-
-        public bool PassThru(IPlayer player)
+        public void ActivateToggleDoor()
         {
-            return Opened;
+            Opened = !Opened;
         }
+    }
+
+    public interface IToggleDoor : IDoor
+    {
+        public void ActivateToggleDoor();
     }
 }

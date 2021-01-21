@@ -14,6 +14,24 @@
     <None Update="Levels\TempleOfDoom.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Levels\TempleOfDoom_Test_Enemy_Trap.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Levels\TempleOfDoom_Test_Enemy_Conveyor_Belt.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <None Update="Levels\TempleOfDoom_Extended_B.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="CODE_TempleOfDoom_DownloadableContent, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\Clones\deelopdracht-1-the-temple-of-doom-maikdekruif_larsmeeuwsen\DLC\CODE_TempleOfDoom_DownloadableContent.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

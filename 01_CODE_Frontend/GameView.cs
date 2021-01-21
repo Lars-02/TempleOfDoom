@@ -1,8 +1,8 @@
-﻿using CODE_Frontend.Modules;
-using CODE_GameLib.Interfaces;
-using System;
+﻿using System;
 using System.Text;
+using CODE_Frontend.Modules;
 using CODE_Frontend.ViewModel;
+using CODE_GameLib;
 
 namespace CODE_Frontend
 {
@@ -22,17 +22,17 @@ namespace CODE_Frontend
         {
             Console.Clear();
             Console.SetCursorPosition(0, 1);
-            
+
             foreach (var line in _headerModule.Render(game))
                 Print(line);
-            
+
             Console.WriteLine();
 
-            var grid = new RoomViewModel(game.Player.Location.Room, game.Player).GetGrid();
-           
+            var grid = new RoomViewModel(game.Player.Location.Room, game.Player, game.Enemies).GetGrid();
+
             var spacing = new ConsoleText(" ");
 
-            for (var row = grid.GetLength(1) - 1; row >= 0; row--)
+            for (var row = 0; row < grid.GetLength(1); row++)
             {
                 for (var col = 0; col < grid.GetLength(0); col++)
                 {
@@ -42,11 +42,12 @@ namespace CODE_Frontend
 
                 Console.WriteLine();
             }
+
             Console.WriteLine();
 
             if (game.Player.Died)
                 Console.WriteLine("Oh no Indiana, you have lost!");
-            else if (game.Player.Won)
+            else if (game.Won)
                 Console.WriteLine("Congrats you have escaped the Temple of Doom!");
 
             if (game.Quit)

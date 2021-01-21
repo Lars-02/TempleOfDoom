@@ -1,32 +1,36 @@
 ﻿using System;
-using CODE_GameLib.Interfaces.Items;
-using CODE_GameLib.Interfaces.Items.BoobyTraps;
-using CODE_GameLib.Interfaces.Items.Wearable;
+using CODE_GameLib.RoomObjects;
+using CODE_GameLib.RoomObjects.BoobyTraps;
+using CODE_GameLib.RoomObjects.Wearable;
 
 namespace CODE_Frontend.ViewModel
 {
     public class ItemViewModel
     {
-        private readonly IItem _item;
+        private readonly IRoomObject _roomObject;
 
-        public int X => _item.X;
-        public int Y => _item.Y;
-        public ConsoleText View => GetItemConsoleText(_item);
-
-        public ItemViewModel(IItem item)
+        public ItemViewModel(IRoomObject roomObject)
         {
-            _item = item;
+            _roomObject = roomObject;
         }
 
-        private static ConsoleText GetItemConsoleText(IItem item)
+        public int X => _roomObject.X;
+        public int Y => _roomObject.Y;
+        public ConsoleText View => GetItemConsoleText(_roomObject);
+
+        private static ConsoleText GetItemConsoleText(IRoomObject roomObject)
         {
-            return item switch
+            return roomObject switch
             {
                 ISankaraStone _ => new ConsoleText("S", ConsoleColor.DarkYellow),
-                IDisappearingTrap _ => new ConsoleText("@", ConsoleColor.White),
-                IBoobyTrap _ => new ConsoleText("Ο", ConsoleColor.White),
-                IKey key => new ConsoleText("K", Util.ColorToConsoleColor(key.Color)),
-                IPressurePlate _ => new ConsoleText("T", ConsoleColor.White),
+                IDisappearingTrap _ => new ConsoleText("@"),
+                IBoobyTrap _ => new ConsoleText("Ο"),
+                IKey key => new ConsoleText("K", key.Color),
+                IPressurePlate _ => new ConsoleText("T"),
+                IPortal _ => new ConsoleText("Π", ConsoleColor.Magenta),
+                IConveyorBelt conveyorBelt => new ConsoleText(
+                    Util.ConvertDirectionConveyorBeltIcon(conveyorBelt.Direction)),
+
                 _ => new ConsoleText("?")
             };
         }

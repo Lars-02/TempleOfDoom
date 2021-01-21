@@ -1,24 +1,23 @@
-using CODE_GameLib.Interfaces;
-using CODE_GameLib.Interfaces.Doors;
+using CODE_GameLib.Entity;
 
 namespace CODE_GameLib.Doors
 {
-    public class ClosingDoor : IClosingDoor
+    public class ClosingDoor : Door, IClosingDoor
     {
-        public bool Opened { get; set; }
-
         public ClosingDoor()
         {
             Opened = true;
         }
 
-        public bool PassThru(IPlayer player)
+        public override bool PassThru(IEntity entity)
         {
             if (!Opened) return false;
-
             Opened = false;
-
             return true;
         }
+    }
+
+    public interface IClosingDoor : IDoor
+    {
     }
 }

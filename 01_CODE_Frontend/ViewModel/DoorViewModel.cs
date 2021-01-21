@@ -1,21 +1,21 @@
-﻿using CODE_GameLib;
-using CODE_GameLib.Interfaces.Doors;
+﻿using CODE_GameLib.Doors;
+using CODE_GameLib.Enums;
 
 namespace CODE_Frontend.ViewModel
 {
     public class DoorViewModel
     {
-        private readonly IDoor _door;
         private readonly Direction _direction;
-
-        public ConsoleText View => GetDoorConsoleText(_door, _direction);
+        private readonly IDoor _door;
 
         public DoorViewModel(IDoor door, Direction direction)
         {
             _door = door;
             _direction = direction;
         }
-        
+
+        public ConsoleText View => GetDoorConsoleText(_door, _direction);
+
         private static ConsoleText GetDoorConsoleText(IDoor door, Direction direction)
         {
             switch (door)
@@ -26,9 +26,9 @@ namespace CODE_Frontend.ViewModel
                     return new ConsoleText("⊥");
                 case IColoredDoor coloredDoor:
                 {
-                    var consoleText = new ConsoleText("|", Util.ColorToConsoleColor(coloredDoor.Color));
-                    
-                    if (direction == Direction.Top || direction == Direction.Bottom)
+                    var consoleText = new ConsoleText("|", coloredDoor.Color);
+
+                    if (direction == Direction.North || direction == Direction.South)
                         consoleText.Text = "−";
 
                     return consoleText;

@@ -1,13 +1,20 @@
 ﻿using System;
-using System.Drawing;
+using CODE_GameLib.Enums;
 
 namespace CODE_Frontend
 {
     public static class Util
     {
-        public static ConsoleColor ColorToConsoleColor(Color color)
+        public static string ConvertDirectionConveyorBeltIcon(Direction direction)
         {
-            return (ConsoleColor)Enum.Parse(typeof(ConsoleColor), color.Name, true);
+            return direction switch
+            {
+                Direction.North => "▲",
+                Direction.East => "▶",
+                Direction.South => "▼",
+                Direction.West => "◀",
+                _ => throw new ArgumentOutOfRangeException(nameof(direction), direction, "This is an invalid direction")
+            };
         }
     }
 }

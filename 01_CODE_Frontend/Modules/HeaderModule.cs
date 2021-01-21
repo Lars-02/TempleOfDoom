@@ -1,9 +1,11 @@
-﻿using CODE_GameLib.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using CODE_Frontend.ViewModel;
-using CODE_GameLib.Interfaces.Items.Wearable;
+using CODE_GameLib;
+using CODE_GameLib.Entity;
+using CODE_GameLib.RoomObjects;
+using CODE_GameLib.RoomObjects.Wearable;
 
 namespace CODE_Frontend.Modules
 {
@@ -26,10 +28,10 @@ namespace CODE_Frontend.Modules
         public IEnumerable<ConsoleText> Render(IGame game)
         {
             _player = game.Player;
-            
+
             yield return new ConsoleText(Title);
             yield return new ConsoleText(Environment.NewLine);
-            
+
             yield return new ConsoleText(Lives);
             yield return new ConsoleText(" - ");
             yield return new ConsoleText(SankaraStones, ConsoleColor.DarkYellow);
@@ -38,11 +40,12 @@ namespace CODE_Frontend.Modules
             yield return new ConsoleText(Environment.NewLine);
 
             foreach (var item in GetInventory())
-            {
                 yield return item;
-                yield return new ConsoleText(" ");
-            }
-            
+
+            foreach (var cheat in GetCheats())
+                yield return cheat;
+
+
             yield return new ConsoleText(Environment.NewLine);
             yield return new ConsoleText(GenericModule.HorizontalLine(Console.WindowWidth), ConsoleColor.Gray);
             yield return new ConsoleText(Environment.NewLine);
@@ -50,10 +53,29 @@ namespace CODE_Frontend.Modules
 
         private IEnumerable<ConsoleText> GetInventory()
         {
-            yield return new ConsoleText("Inventory: ");
+            if (!_player.Inventory.Any(wearable => wearable is IKey))
+                yield break;
 
-            foreach (var item in _player.Inventory.Where(item => !(item is ISankaraStone)))
-                yield return new ItemViewModel(item).View;
+            yield return new ConsoleText("Inventory:");
+
+            foreach (var wearable in _player.Inventory.Where(wearable => !(wearable is ISankaraStone)))
+            {
+                yield return new ConsoleText(" ");
+                yield return new ItemViewModel((RoomObject) wearable).View;
+            }
+
+            yield return new ConsoleText(Environment.NewLine);
+        }
+
+        private IEnumerable<ConsoleText> GetCheats()
+        {
+            if (!_player.EnabledCheats.Any())
+                yield break;
+
+            yield return new ConsoleText("Cheats:", ConsoleColor.DarkRed);
+
+            foreach (var cheat in _player.EnabledCheats.OrderBy(cheat => cheat.ToString()))
+                yield return new ConsoleText($" {cheat.ToString()}");
         }
     }
 }
